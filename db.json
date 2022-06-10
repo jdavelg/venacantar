@@ -1,0 +1,20 @@
+{
+    "singers": [
+      { "id": 1, "name": "daddy yankee", "img": "src/img/daddy-yankee.jpg","info":"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged" },
+      { "id": 2, "name": "Nicky Jam", "img": "src/img/nicky-jam.jpg","info":"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged" },
+      { "id": 3, "name": "Dua Lipa", "img": "src/img/dua-lipa.jpg","info":"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged" },
+      { "id": 4, "name": "Marito Rivera", "img": "src/img/nigeria-talent.jpg","info":"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged" },
+      { "id": 5, "name": "Michael Jackson", "img": "src/img/michael-jackson.jpg","info":"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged" }
+    ],
+    "campaigns": [
+      { "id": 1, "name": "some comment", "startDate":"15-06-2022 08:05:00", "endDate":"16-06-2022 08:05:00", "singers": [
+        {"singerId":1},
+        {"singerId":5}
+      ]},
+      { "id": 2, "name": "some comment", "startDate":"19-06-2022 08:05:00", "endDate":"20-06-2022 08:05:00","singers": [
+        {"singerId":2},
+        {"singerId":4}
+      ]}
+    ],
+    "profile": { "name": "typicode" }
+  }
