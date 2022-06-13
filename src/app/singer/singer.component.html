@@ -13,12 +13,12 @@
         </ng-template>
     </p-toolbar>
 
-    <p-table #dt [value]="singers" [rows]="10" [paginator]="true" [globalFilterFields]="['name','country.name','representative.name','status']" responsiveLayout="scroll"
+    <p-table #dt [value]="singers" [rows]="10" [paginator]="true" [globalFilterFields]="['name']" responsiveLayout="scroll"
         [(selection)]="selectedSingers" [rowHover]="true" dataKey="id"
         currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [showCurrentPageReport]="true">
         <ng-template pTemplate="caption">
             <div class="flex align-items-center justify-content-between">
-                <h5 class="m-0">Manage singers</h5>
+                <h5 class="m-0">Administrar Cantantes</h5>
                 <span class="p-input-icon-left">
                     <i class="pi pi-search"></i>
                     <input pInputText type="text" (input)="dt.filterGlobal($event.target.value , 'contains')" placeholder="Search..." />

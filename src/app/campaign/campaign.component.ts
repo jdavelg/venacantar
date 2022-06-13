@@ -1,32 +1,34 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { Singer } from '../models/singer';
+import { Campaign } from '../models/campaign';
 import { AuthService } from '../services/auth.service';
 import { UserService } from '../services/user.service';
 import { ConfirmationService } from 'primeng/api';
 import { MessageService } from 'primeng/api';
 @Component({
-  selector: 'app-singer',
-  templateUrl: './singer.component.html',
-  styleUrls: ['./singer.component.css'],
+  selector: 'app-campaign',
+  templateUrl: './campaign.component.html',
+  styleUrls: ['./campaign.component.css'],
   providers: [MessageService,ConfirmationService]
-
 })
-export class SingerComponent implements OnInit, OnDestroy {
+export class CampaignComponent implements OnInit, OnDestroy {
+
   singers: Singer[]
-  singer: Singer
+  campaigns:Campaign[]
+  campaign: Campaign
   isAuthenticated = false
   private userSub: Subscription
   public nominateds: any
   public userEmail: any
   public connectedToB: boolean = true
-  clonedSingers: { [s: string]: Singer; } = {};
+  clonedCampaigns: { [s: string]: Campaign; } = {};
 
-  singerDialog: boolean;
+  campaignDialog: boolean;
 
 
 
-  selectedSingers: Singer[];
+  selectedCampaigns: Campaign[];
 
   submitted: boolean;
 
@@ -34,7 +36,7 @@ export class SingerComponent implements OnInit, OnDestroy {
   constructor(
 
     private _authService: AuthService,
-    private _singerService: UserService,
+    private _campaignService: UserService,
     private messageService: MessageService, private confirmationService: ConfirmationService
   ) {
     
@@ -51,9 +53,10 @@ export class SingerComponent implements OnInit, OnDestroy {
 
 
   }
-  ngOnInit(): void {
-    this.getSingers()
 
+  ngOnInit(): void {
+this.getCampaigns()
+this.getSingers()
   }
   onLogout() {
 
@@ -71,7 +74,7 @@ export class SingerComponent implements OnInit, OnDestroy {
   }
 
   getSingers() {
-    this._singerService.getSingers().subscribe(
+    this._campaignService.getSingers().subscribe(
       resp => {
         this.singers = resp
 
@@ -81,52 +84,65 @@ export class SingerComponent implements OnInit, OnDestroy {
       }
     )
   }
+
+getCampaigns(){
+  this._campaignService.getCampaings().subscribe(
+    resp => {
+      this.campaigns = resp
+
+    },
+    err => {
+      this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Ocurrio un error al conectarse al servidor' });
+    }
+  )
+}
+
   /* new code  */
   openNew() {
-    this.singer = {}
+    this.campaign = {}
     this.submitted = false;
-    this.singerDialog = true;
+    this.campaignDialog = true;
   }
 
-  deleteSelectedSingers() {
+  deleteSelectedCampaigns() {
     this.confirmationService.confirm({
       message: 'Esta seguro de eliminar este departamento?',
       header: 'Confirm',
       icon: 'pi pi-exclamation-triangle',
       accept: () => {
 
-        for (var i = 0; i < this.selectedSingers.length; i++) {
-          let cantante = this.selectedSingers[i]
-          this._singerService.deleteSinger(cantante.id).subscribe(
+        for (var i = 0; i < this.selectedCampaigns.length; i++) {
+          let cantante = this.selectedCampaigns[i]
+          this._campaignService.deleteCampaign(cantante.id).subscribe(
             resp => {
-              this.messageService.add({ severity: 'success', summary: 'Exito', detail: 'borrado ' + i + ' de ' + this.selectedSingers.length + ' seleccionados', life: 1000 });
+              this.messageService.add({ severity: 'success', summary: 'Exito', detail: 'borrado ' + i + ' de ' + this.selectedCampaigns.length + ' seleccionados', life: 1000 });
             },
             err => {
-              this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Error al borrar registro ' + i + ' de ' + this.selectedSingers.length + ' seleccionados', life: 1000 });
+              this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Error al borrar registro ' + i + ' de ' + this.selectedCampaigns.length + ' seleccionados', life: 1000 });
             }
           )
         }
 
 
-        this.selectedSingers = [];
-        this.getSingers()
+        this.selectedCampaigns = [];
+        this.getCampaigns()
       }
     });
   }
 
-  editSinger(singer: Singer) {
-    this.singer = { ...singer };
-    this.singerDialog = true;
+  editCampaign(campaign: Campaign) {
+    this.campaign = { ...campaign };
+    this.campaignDialog = true;
   }
 
-  deleteSinger(singer: any) {
+  deleteCampaign(campaign: any) {
     this.confirmationService.confirm({
-      message: 'Estas seguro sobre eliminar ' + singer.name + '?',
+      message: 'Estas seguro sobre eliminar ' + campaign.name + '?',
       header: 'Confirm',
       icon: 'pi pi-exclamation-triangle',
       accept: () => {
         /*       this.types = this.types.filter(val => val.id !== type.id); */
-        this._singerService.deleteSinger(singer.id).subscribe(
+        this._campaignService.deleteCampaign(campaign.id).subscribe(
           resp => {
             this.messageService.add({ severity: 'success', summary: 'Exito', detail: 'Registro borrado satisfactoriamenete', life: 3000 });
             this.getSingers()
@@ -135,28 +151,28 @@ export class SingerComponent implements OnInit, OnDestroy {
             this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Error al borrar registro ', life: 3000 });
           }
         )
-        this.singer = {};
+        this.campaign = {};
 
       }
     });
   }
 
   hideDialog() {
-    this.singer = {}
-    this.singerDialog = false;
+    this.campaign = {}
+    this.campaignDialog = false;
     this.submitted = false;
   }
 
-  saveSinger() {
+  saveCampaign() {
     this.submitted = true;
-    if (this.singer.id !== undefined && this.singer.id != null) {
+    if (this.campaign.id !== undefined && this.campaign.id != null) {
     /*   if (this.singer.id) {
         delete this.singer.created_at
       } */
       /* if (this.singer.updated_at) {
         delete this.singer.updated_at
       } */
-      this._singerService.updateSinger(this.singer).subscribe(
+      this._campaignService.updateCampaign(this.campaign).subscribe(
         resp => {
           this.messageService.add({ severity: 'success', summary: 'Exito', detail: 'Registro guardado', life: 3000 });
           this.hideDialog()
@@ -167,10 +183,10 @@ export class SingerComponent implements OnInit, OnDestroy {
         }
       )
     } else {
-      this._singerService.saveSinger(this.singer).subscribe(
+      this._campaignService.saveCampaign(this.campaign).subscribe(
         resp => {
           this.messageService.add({ severity: 'success', summary: 'Exito', detail: 'Registro guardado', life: 3000 });
-          this.getSingers()
+          this.getCampaigns()
           this.hideDialog()
         },
         err => {
@@ -221,5 +237,4 @@ export class SingerComponent implements OnInit, OnDestroy {
   }
 
   /* end new code */
-
 }

@@ -82,9 +82,10 @@ export class UserService {
   saveSinger(form: any): Observable<any> {
 /* 
     let headers = new HttpHeaders().set('Authorization', this.getToken()) */
+    let headers = new HttpHeaders().set('Content-Type', 'application/json') 
     let params = form
 
-    return this._http.post(global.url + 'singers', params/* , { headers: headers } */)
+    return this._http.post(global.url + 'singers', params, { headers: headers } )
   }
 
   saveCampaign(form: any): Observable<any> {
@@ -95,13 +96,25 @@ export class UserService {
         return this._http.post(global.url + 'campaigns', params/* , { headers: headers } */)
       }
       updateSinger(form: any): Observable<any> {
-        /* 
-            let headers = new HttpHeaders().set('Authorization', this.getToken()) */
+    
+            let headers = new HttpHeaders().set('Content-Type', 'application/json') 
             let params:any = form
         
-            return this._http.put(global.url + 'campaigns/'+params.id, params/* , { headers: headers } */)
+            return this._http.put(global.url + 'campaigns/'+params.id, params , { headers: headers } )
+          }
+
+          updateCampaign(form: any): Observable<any> {
+    
+            let headers = new HttpHeaders().set('Content-Type', 'application/json') 
+            let params:any = form
+        
+            return this._http.put(global.url + 'campaigns/'+params.id, params , { headers: headers } )
           }
   deleteSinger(id: any): Observable<any> {
+    let headers = new HttpHeaders().set('Authorization', this.getToken())
+    return this._http.delete(global.url + 'singers/' + id/* , { headers: headers } */)
+  }
+  deleteCampaign(id: any): Observable<any> {
     let headers = new HttpHeaders().set('Authorization', this.getToken())
     return this._http.delete(global.url + 'singers/' + id/* , { headers: headers } */)
   }

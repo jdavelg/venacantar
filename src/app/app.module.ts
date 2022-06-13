@@ -22,7 +22,9 @@ import {FileUploadModule} from 'primeng/fileupload';
 import {ToolbarModule} from 'primeng/toolbar';
 import {DialogModule} from 'primeng/dialog';
 import {ToastModule} from 'primeng/toast';
+import {MultiSelectModule} from 'primeng/multiselect';
 import {ButtonModule} from 'primeng/button';
+import { CampaignComponent } from './campaign/campaign.component';
 const firebaseUiAuthConfig: ExtendedFirebaseUIAuthConfig= {
   signInFlow: 'popup',
 
@@ -49,6 +51,7 @@ const firebaseUiAuthConfig: ExtendedFirebaseUIAuthConfig= {
     HomeComponent,
     HomeadminComponent,
     SingerComponent,
+    CampaignComponent,
   ],
   imports: [
     BrowserModule,
@@ -67,6 +70,7 @@ const firebaseUiAuthConfig: ExtendedFirebaseUIAuthConfig= {
       ToolbarModule,
       ToastModule,
       ButtonModule,
+      MultiSelectModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireAuthModule,
     FirebaseUIModule.forRoot(firebaseUiAuthConfig)
