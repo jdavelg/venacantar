@@ -56,8 +56,7 @@ const firebaseUiAuthConfig: ExtendedFirebaseUIAuthConfig= {
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    AppRoutingModule,
-  
+    AppRoutingModule,   
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
