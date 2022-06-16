@@ -48,7 +48,10 @@
                 <td>{{campaign.name}}</td>
                 <td>{{campaign.startDate}}</td>
                 <td>{{campaign.endDate }}</td>
-                <td>Aqui van los seleccionados a competir</td>
+                <td><ng-template ngFor let-cantante [ngForOf]="campaign.singers" >
+                    <div>{{cantante.name}}</div>
+                  </ng-template>
+                </td>
                 <!-- <td>{{singer.category}}</td>
                 <td><p-rating [ngModel]="singer.rating" readonly="true" cancel="false"></p-rating></td>
                 <td><span [class]="'singer-badge status-' + (singer.inventoryStatus ? singer.inventoryStatus.toLowerCase() : '')">{{singer.inventoryStatus}}</span></td> -->
@@ -66,9 +69,12 @@
     </p-table>
 </div>
 
-<p-dialog [(visible)]="campaignDialog" [style]="{width: '450px'}" header="singer Details" [modal]="true" styleClass="p-fluid">
+<p-dialog [(visible)]="campaignDialog" [style]="{width: '450px', minHeight:'95%'}" header="singer Details" [modal]="true" styleClass="p-fluid">
     <ng-template pTemplate="content">
-        
+        <div class="field">
+            <label for="singers">Cantantes</label>
+            <p-multiSelect [options]="singers" [(ngModel)]="campaign.singers" optionLabel="name" display="chip" ></p-multiSelect>
+        </div>
         <div class="field">
             <label for="name">Name</label>
             <input type="text" pInputText id="name" [(ngModel)]="campaign.name" required autofocus />
@@ -76,20 +82,20 @@
         </div>
         <div class="field">
             <label for="startDate">Fecha de Inicio</label>
-            <div class="field col-12 md:col-4">                
-                <p-calendar [(ngModel)]="campaign.startDate" dateFormat="mm-dd-yy" inputId="dateformat"></p-calendar>
-            </div>
+                       
+                <p-calendar [(ngModel)]="campaign.startDate" dateFormat="dd-mm-yy" inputId="dateformat"></p-calendar>
+            
         </div>
         <div class="field">
             <label for="endDate">Fecha de fin</label>
-            <div class="field col-12 md:col-4">                
-                <p-calendar [(ngModel)]="campaign.endDate" dateFormat="mm-dd-yy" inputId="dateformat"></p-calendar>
-            </div>
+                           
+                <p-calendar [(ngModel)]="campaign.endDate" dateFormat="dd-mm-yy" inputId="dateformat"></p-calendar>
+            
         </div>
-        <div class="field">
-            <label for="endDate">Fecha de fin</label>
+        <!-- <div class="field">
+            <label for="singers">Cantantes</label>
             <p-multiSelect [options]="singers" [(ngModel)]="campaign.singers" display="chip"></p-multiSelect>
-        </div>
+        </div> -->
     </ng-template>
 
     <ng-template pTemplate="footer">

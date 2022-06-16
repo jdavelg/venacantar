@@ -38,11 +38,11 @@ export class UserService {
     return this._http.get(global.url + 'nominateds/votes')
   }
 
-  addVote(data: any): Observable<any> {
+/*   addVote(data: any): Observable<any> {
     let params = JSON.stringify(data)
     let headers = new HttpHeaders().set('Content-Type', 'application/json')
     return this._http.post(global.url + 'votes', params, { headers: headers })
-  }
+  } */
 
   uploadImage(image: any): Observable<any> {
 
@@ -73,6 +73,13 @@ export class UserService {
       return '0'
     }
 
+  }
+
+  saveVote(campaign:any): Observable<any>{
+    let headers = new HttpHeaders().set('Content-Type', 'application/json') 
+  
+   
+    return this._http.put(global.url + 'campaigns/'+campaign.id, campaign, { headers: headers } )
   }
 
   getCounter(): Observable<any> {
@@ -116,6 +123,6 @@ export class UserService {
   }
   deleteCampaign(id: any): Observable<any> {
     let headers = new HttpHeaders().set('Authorization', this.getToken())
-    return this._http.delete(global.url + 'singers/' + id/* , { headers: headers } */)
+    return this._http.delete(global.url + 'campaigns/' + id/* , { headers: headers } */)
   }
 }

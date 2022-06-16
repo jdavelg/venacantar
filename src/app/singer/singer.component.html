@@ -45,7 +45,7 @@
                     <p-tableCheckbox [value]="singer"></p-tableCheckbox>
                 </td>
                 <td>{{singer.name}}</td>
-                <td><img [src]="'../../' + singer.image" [alt]="singer.image" width="100" class="shadow-4" /></td>
+                <td><img [src]="'../assets/img/'+ singer.img " [alt]="singer.image" width="100" class="shadow-4" /></td>
                 <td>{{singer.info }}</td>
                 <!-- <td>{{singer.category}}</td>
                 <td><p-rating [ngModel]="singer.rating" readonly="true" cancel="false"></p-rating></td>
@@ -66,7 +66,7 @@
 
 <p-dialog [(visible)]="singerDialog" [style]="{width: '450px'}" header="singer Details" [modal]="true" styleClass="p-fluid">
     <ng-template pTemplate="content">
-        <img [src]="'assets/showcase/images/demo/singer/' + singer.image" [alt]="singer.image" class="singer-image" *ngIf="singer.image">
+        <img [src]="'../assets/img/'+ singer.img" [alt]="singer.image" class="singer-image" *ngIf="singer.image">
         <div class="field">
             <label for="name">Name</label>
             <input type="text" pInputText id="name" [(ngModel)]="singer.name" required autofocus />

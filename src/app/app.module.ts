@@ -14,6 +14,8 @@ import { environment } from 'src/environments/environment.prod';
 import { SafePipe } from './safe.pipe';
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
+import {InputTextareaModule} from 'primeng/inputtextarea';
+
 import { HomeadminComponent } from './homeadmin/homeadmin.component';
 import { SingerComponent } from './singer/singer.component';
 import {TableModule} from 'primeng/table';
@@ -24,7 +26,15 @@ import {DialogModule} from 'primeng/dialog';
 import {ToastModule} from 'primeng/toast';
 import {MultiSelectModule} from 'primeng/multiselect';
 import {ButtonModule} from 'primeng/button';
+import {CalendarModule} from 'primeng/calendar';
 import { CampaignComponent } from './campaign/campaign.component';
+import { InputTextModule } from 'primeng/inputtext';
+import {ChipsModule} from 'primeng/chips';
+import {CardModule} from 'primeng/card';
+import {SkeletonModule} from 'primeng/skeleton';
+import {ProgressSpinnerModule} from 'primeng/progressspinner';
+import { RegisterComponent } from './register/register.component';
+import { HeaderComponent } from './header/header.component';
 const firebaseUiAuthConfig: ExtendedFirebaseUIAuthConfig= {
   signInFlow: 'popup',
 
@@ -52,9 +62,10 @@ const firebaseUiAuthConfig: ExtendedFirebaseUIAuthConfig= {
     HomeadminComponent,
     SingerComponent,
     CampaignComponent,
+    RegisterComponent,
+    HeaderComponent,
   ],
-  imports: [
-    BrowserModule,
+  imports: [ 
     BrowserAnimationsModule,
     AppRoutingModule,   
     BrowserModule,
@@ -63,13 +74,20 @@ const firebaseUiAuthConfig: ExtendedFirebaseUIAuthConfig= {
     FormsModule,
       CheckboxModule,
       TableModule,
+      InputTextModule,
       ConfirmDialogModule,
       DialogModule,
       FileUploadModule,
       ToolbarModule,
+      CalendarModule,
+      InputTextareaModule,
       ToastModule,
       ButtonModule,
+      ChipsModule,
+      CardModule,
+      SkeletonModule,
       MultiSelectModule,
+      ProgressSpinnerModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireAuthModule,
     FirebaseUIModule.forRoot(firebaseUiAuthConfig)

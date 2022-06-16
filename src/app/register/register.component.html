@@ -1,0 +1,71 @@
+<!--================Login Box Area =================-->
+<section class="login_box_area section-margin">
+    <div class="container">
+        <div class="row">
+            <div class="alert alert-danger d-flex align-items-center alert-dismissible fade show" role="alert" *ngIf="error != null && error!= undefined">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-exclamation-triangle-fill flex-shrink-0 me-2" viewBox="0 0 16 16" role="img" aria-label="Warning:">
+                  <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+                </svg>
+                <div>
+                  {{error}}
+                </div>
+              </div>
+            <div class="col-lg-6">
+                <div class="login_box_img">
+                   <!--  <img src="../../assets/img/LOGO-SC.png" alt="" class="img-fluid" > -->
+                    <div class="hover">
+                        <h4>Ya tienes una cuenta?</h4>
+                        <p>Puedes iniciar sesión para votar por tu salvadoreño comprometido favorito</p>
+                        <a class="button button-account" [routerLink]="[ '/login' ]">Iniciar sesión</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div *ngIf="isLoading" style="text-align: center;">
+                   <app-loading-spinner></app-loading-spinner>  
+                </div>
+               
+                <div class="login_form_inner register_form_inner" *ngIf="!isLoading">
+                    <h3>Crear una cuenta</h3>
+                    
+                    <form class="row login_form" #registerForm="ngForm" (ngSubmit)="onSubmit(registerForm)"
+                        id="register_form">
+
+                        <div class="col-md-12 form-group">
+                            <input type="email" class="form-control" id="email" name="email" placeholder="Email"
+                                onfocus="this.placeholder = ''" onblur="this.placeholder = 'Email'" #email="ngModel"
+                                [(ngModel)]="user.email" required>
+                        </div>
+                        <div class="col-md-12 form-group">
+                            <input type="password" class="form-control" id="password" name="password"
+                                placeholder="Password" onfocus="this.placeholder = ''"
+                                onblur="this.placeholder = 'Password'" #password="ngModel" [(ngModel)]="user.password"
+                                required minlength="6">
+                                <div class="invalid-feedback" *ngIf="password.touched && password.invalid">
+                           La contraseña debe tener seis caracteres como mínimo.
+                          </div>
+                        </div>
+                        
+                        <div class="col-md-12 form-group">
+                            <input type="password" class="form-control" id="confirmPassword" name="confirmPassword"
+                                placeholder="Confirm Password" onfocus="this.placeholder = ''"
+                                onblur="this.placeholder = 'Confirm Password'" [(ngModel)]="confirmedPassword"
+                                [disabled]="!password.touched || !password.valid" minlength="6">
+                        </div>
+                      <!--   <div class="col-md-12 form-group">
+                            <div class="creat_account">
+                                <input type="checkbox" id="f-option2" name="selector">
+                                <label for="f-option2">Mantener sesión iniciada</label>
+                            </div>
+                        </div> -->
+                        <div class="col-md-12 form-group">
+                            <button type="submit" class="btn btn-primary  w-100"
+                                [disabled]="registerForm.invalid || confirmedPassword != user.password">Registrarme</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--================End Login Box Area =================-->

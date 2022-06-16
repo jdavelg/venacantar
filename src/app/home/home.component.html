@@ -1,44 +1,39 @@
-<div class="card">
-    <div class="flex flex-column md:flex-row card-container align-items-center justify-content-center">
-<div class="p-1">
-    
-    <div class="grid">
-     
-        <div class="col-6 xl:col-6">
-            <div class="surface-card shadow-2 border-round p-4">
-                <div class="flex align-items-center justify-content-center">
-                     <div class=" text-xl text-900 font-medium mb-5">Nombre Participante</div>
+<div *ngIf="currentCampaign && currentCampaign.singers; else elseBlock">
+    <p-toast></p-toast>
+    <div class="card" style="min-height: 100%; min-width: 100%;">
+        <div class="flex flex-column md:flex-row card-container align-items-center justify-content-center">
+            <div class="p-1">
+
+                <div class="grid">
+                    <ng-template ngFor let-cantante [ngForOf]="currentCampaign.singers">
+                        <div class="sm:col-6 md:col-4 lg:col-4 xl:col-4 mb-2">
+                            <div class="surface-card shadow-2 border-round p-4" style="min-height: 100% !important;">
+                                <div class="flex align-items-center justify-content-center">
+                                    <div class=" text-xl text-900 font-medium mb-5">{{cantante.name}}</div>
+                                </div>
+
+                                <div class="min-w-full " style="min-height: 250px !important;">
+                                    <img src="../../assets/img/{{cantante.img}}" class="img-fluid" alt="..." style="max-height: 300px;">
+                                </div>
+
+                                <div class="flex  justify-content-center align-items-center pt-3">
+                                    <a type="button" *ngIf="isAuthenticated"
+                                        class="btn btn-danger" (click)="onAddVote(cantante)">Votar
+                                    </a>
+                                            <a type="button" class="btn btn-success" *ngIf="!isAuthenticated" [routerLink]="['/login']">Inicia sesion para votar</a>
+
+                                </div>
+                            </div>
+                        </div>
+                    </ng-template>
+
                 </div>
-               
-                <div class="min-w-full">
-                    <img src="https://via.placeholder.com/500" class="img-fluid" alt="...">
-                </div>
-             
-                <div class="flex  justify-content-center align-items-center pt-3"><button pbutton="" pripple="" label="Votar"
-                        class="p-ripple p-element p-button-outlined p-button-danger w-6 mr-2 p-button p-component"><span
-                            class="p-ink"></span><span class="p-button-label">Votar por nombre</span></button>
-                            
-                         </div>
             </div>
         </div>
-        <div class="col-6 xl:col-6">
-            <div class="surface-card shadow-2 border-round p-4">
-                <div class="flex align-items-center justify-content-center">
-                    <div class=" text-xl text-900 font-medium mb-5">Nombre Participante</div>
-               </div>
-                <div class="min-w-full">
-                    <img src="https://via.placeholder.com/500" class="img-fluid" alt="...">
-                </div>
-               
-                <div class="flex justify-content-center align-items-center pt-3">
-                    <button pbutton="" pripple="" label="Votar"
-                        class="p-ripple p-element p-button-outlined p-button-success w-6 mr-2 p-button p-component"><span
-                            class="p-ink"></span><span class="p-button-label">Votar por nombre</span></button>
-                           </div>
-            </div>
-        </div>
-       
     </div>
 </div>
-</div>
-</div>
+<ng-template #elseBlock>
+    <div class="centered-disc">
+        <p-progressSpinner></p-progressSpinner>
+    </div>
+</ng-template>

@@ -104,23 +104,34 @@ export class AuthService {
 
     }, expirationDuration)
   }
-
+  addDays(date=new Date(), days=5) {
+    var result = new Date(date);
+    result.setDate(result.getDate() + days);
+    return result;
+  }
   autologin() {
     const userData: {
       email: string,
       id: string,
       _token: string,
-      _tokenExpirationDate: Date
+      _tokenExpirationDate?: Date
     } = JSON.parse(localStorage.getItem('userData'))
 
-    if (!userData) {
+    if (!userData) {  
+        console.log('se hizo logout');
       this.firebaseLogout()
+  
+      
       return;
     }
+    if (userData._tokenExpirationDate==null ||userData._tokenExpirationDate==undefined ) {
+      userData._tokenExpirationDate= this.addDays()
+    }
+    
     const loadedUser = new LoggedUser(userData.email, userData.id, userData._token, new Date(userData._tokenExpirationDate))
 
     if (loadedUser.token) {
-
+     
       this.user.next(loadedUser)
       const expirationDuration = new Date(userData._tokenExpirationDate).getTime() - new Date().getTime()
     /*   this.autologout(expirationDuration) */

@@ -89,7 +89,10 @@ getCampaigns(){
   this._campaignService.getCampaings().subscribe(
     resp => {
       this.campaigns = resp
-
+this.campaigns.map(campana=>{
+  campana.startDate=new Date(campana.startDate);
+  campana.endDate=new Date(campana.endDate)
+})
     },
     err => {
       this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Ocurrio un error al conectarse al servidor' });
@@ -145,9 +148,11 @@ getCampaigns(){
         this._campaignService.deleteCampaign(campaign.id).subscribe(
           resp => {
             this.messageService.add({ severity: 'success', summary: 'Exito', detail: 'Registro borrado satisfactoriamenete', life: 3000 });
-            this.getSingers()
+            this.getCampaigns()
           },
           err => {
+            console.log(err);
+            
             this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Error al borrar registro ', life: 3000 });
           }
         )
@@ -165,18 +170,15 @@ getCampaigns(){
 
   saveCampaign() {
     this.submitted = true;
-    if (this.campaign.id !== undefined && this.campaign.id != null) {
-    /*   if (this.singer.id) {
-        delete this.singer.created_at
-      } */
-      /* if (this.singer.updated_at) {
-        delete this.singer.updated_at
-      } */
+  /*   console.log('campania', this.campaign); */
+    
+     if (this.campaign.id !== undefined && this.campaign.id != null) {
+   
       this._campaignService.updateCampaign(this.campaign).subscribe(
         resp => {
-          this.messageService.add({ severity: 'success', summary: 'Exito', detail: 'Registro guardado', life: 3000 });
+          this.messageService.add({ severity: 'success', summary: 'Exito', detail: 'Registro actualizadp', life: 3000 });
           this.hideDialog()
-          this.getSingers()
+          this.getCampaigns()
         },
         err => {
           this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Error en el servidor al guardar el registro', life: 3000 });
@@ -193,7 +195,7 @@ getCampaigns(){
           this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Error en el servidor al guardar el registro', life: 3000 });
         }
       )
-    }
+    } 
 
     /*    if (this.type.name) {
            if (this.product.id) {

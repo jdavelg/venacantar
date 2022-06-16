@@ -15,9 +15,13 @@ export class AppComponent implements OnInit {
 }
 
   ngOnInit(): void {
+   
+    
   this.authService.autologin();
   this.primengConfig.ripple = true;
     
   }
   title = 'venacantar';
+ 
+  
 }
