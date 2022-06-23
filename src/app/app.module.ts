@@ -35,6 +35,10 @@ import {SkeletonModule} from 'primeng/skeleton';
 import {ProgressSpinnerModule} from 'primeng/progressspinner';
 import { RegisterComponent } from './register/register.component';
 import { HeaderComponent } from './header/header.component';
+import { BannerComponent } from './banner/banner.component';
+import {TabViewModule} from 'primeng/tabview';
+import {ToggleButtonModule} from 'primeng/togglebutton';
+import {ProgressBarModule} from 'primeng/progressbar';
 const firebaseUiAuthConfig: ExtendedFirebaseUIAuthConfig= {
   signInFlow: 'popup',
 
@@ -64,6 +68,7 @@ const firebaseUiAuthConfig: ExtendedFirebaseUIAuthConfig= {
     CampaignComponent,
     RegisterComponent,
     HeaderComponent,
+    BannerComponent,
   ],
   imports: [ 
     BrowserAnimationsModule,
@@ -80,11 +85,14 @@ const firebaseUiAuthConfig: ExtendedFirebaseUIAuthConfig= {
       FileUploadModule,
       ToolbarModule,
       CalendarModule,
+      ProgressBarModule,
       InputTextareaModule,
       ToastModule,
       ButtonModule,
       ChipsModule,
       CardModule,
+      ToggleButtonModule,
+      TabViewModule,
       SkeletonModule,
       MultiSelectModule,
       ProgressSpinnerModule,

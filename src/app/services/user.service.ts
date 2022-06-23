@@ -38,11 +38,11 @@ export class UserService {
     return this._http.get(global.url + 'nominateds/votes')
   }
 
-/*   addVote(data: any): Observable<any> {
-    let params = JSON.stringify(data)
-    let headers = new HttpHeaders().set('Content-Type', 'application/json')
-    return this._http.post(global.url + 'votes', params, { headers: headers })
-  } */
+  /*   addVote(data: any): Observable<any> {
+      let params = JSON.stringify(data)
+      let headers = new HttpHeaders().set('Content-Type', 'application/json')
+      return this._http.post(global.url + 'votes', params, { headers: headers })
+    } */
 
   uploadImage(image: any): Observable<any> {
 
@@ -54,16 +54,16 @@ export class UserService {
     return this._http.post(global.upload, image/* , { headers: headers } */)
   }
   getSingers(): Observable<any> {
-/* 
-    let headers = new HttpHeaders().set('Authorization', this.getToken()) */
+    /* 
+        let headers = new HttpHeaders().set('Authorization', this.getToken()) */
     return this._http.get(global.url + 'singers', /* { headers: headers } */)
   }
 
   getCampaings(): Observable<any> {
     /* 
         let headers = new HttpHeaders().set('Authorization', this.getToken()) */
-        return this._http.get(global.url + 'campaigns', /* { headers: headers } */)
-      }
+    return this._http.get(global.url + 'campaigns', /* { headers: headers } */)
+  }
 
   getToken() {
     let token = localStorage.getItem('token')
@@ -75,11 +75,25 @@ export class UserService {
 
   }
 
-  saveVote(campaign:any): Observable<any>{
-    let headers = new HttpHeaders().set('Content-Type', 'application/json') 
-  
-   
-    return this._http.put(global.url + 'campaigns/'+campaign.id, campaign, { headers: headers } )
+
+  getBanners(): Observable<any> {
+    return this._http.get(global.url + 'banners')
+  }
+  saveBanner(banner: any): Observable<any> {
+
+ /*    let params = JSON.stringify(banner) */
+    let headers = new HttpHeaders().set('Content-Type', 'application/json')
+    /* .set('Authorization', this._userService.getToken()) */
+
+    return this._http.post(global.url + 'banners/', banner, { headers: headers })
+
+  }
+
+  saveVote(campaign: any): Observable<any> {
+    let headers = new HttpHeaders().set('Content-Type', 'application/json')
+
+
+    return this._http.put(global.url + 'campaigns/' + campaign.id, campaign, { headers: headers })
   }
 
   getCounter(): Observable<any> {
@@ -87,36 +101,50 @@ export class UserService {
   }
 
   saveSinger(form: any): Observable<any> {
-/* 
-    let headers = new HttpHeaders().set('Authorization', this.getToken()) */
-    let headers = new HttpHeaders().set('Content-Type', 'application/json') 
+    /* 
+        let headers = new HttpHeaders().set('Authorization', this.getToken()) */
+    let headers = new HttpHeaders().set('Content-Type', 'application/json')
     let params = form
 
-    return this._http.post(global.url + 'singers', params, { headers: headers } )
+    return this._http.post(global.url + 'singers', params, { headers: headers })
   }
 
   saveCampaign(form: any): Observable<any> {
     /* 
         let headers = new HttpHeaders().set('Authorization', this.getToken()) */
-        let params = form
-    
-        return this._http.post(global.url + 'campaigns', params/* , { headers: headers } */)
-      }
-      updateSinger(form: any): Observable<any> {
-    
-            let headers = new HttpHeaders().set('Content-Type', 'application/json') 
-            let params:any = form
-        
-            return this._http.put(global.url + 'campaigns/'+params.id, params , { headers: headers } )
-          }
+    let params = form
 
-          updateCampaign(form: any): Observable<any> {
-    
-            let headers = new HttpHeaders().set('Content-Type', 'application/json') 
-            let params:any = form
-        
-            return this._http.put(global.url + 'campaigns/'+params.id, params , { headers: headers } )
-          }
+    return this._http.post(global.url + 'campaigns', params/* , { headers: headers } */)
+  }
+
+  updateSinger(form: any): Observable<any> {
+
+    let headers = new HttpHeaders().set('Content-Type', 'application/json')
+    let params: any = form
+
+    return this._http.put(global.url + 'campaigns/' + params.id, params, { headers: headers })
+  }
+
+  updateCampaign(form: any): Observable<any> {
+
+    let headers = new HttpHeaders().set('Content-Type', 'application/json')
+    let params: any = form
+
+    return this._http.put(global.url + 'campaigns/' + params.id, params, { headers: headers })
+  }
+
+  updateBanner(form: any): Observable<any> {
+
+    let headers = new HttpHeaders().set('Content-Type', 'application/json')
+    let params: any = form
+
+    return this._http.put(global.url + 'banners/' + params.id, params, { headers: headers })
+  }
+
+  deleteBanner(id: any): Observable<any> {
+    let headers = new HttpHeaders().set('Authorization', this.getToken())
+    return this._http.delete(global.url + 'banners/' + id/* , { headers: headers } */)
+  }
   deleteSinger(id: any): Observable<any> {
     let headers = new HttpHeaders().set('Authorization', this.getToken())
     return this._http.delete(global.url + 'singers/' + id/* , { headers: headers } */)

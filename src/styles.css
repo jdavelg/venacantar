@@ -5,3 +5,14 @@
     top: 50%;
     left: 50%;
   }
+  .maindiv{
+    background-image: url('./assets/img/background.png');
+    background-size:     cover;                      /* <------ */
+    background-repeat:   no-repeat;
+    background-position: center center; 
+  }
+  .p-progressbar .p-progressbar-value {
+    border: 0 none;
+    margin: 0;
+    background: #ffc107 !important;
+}

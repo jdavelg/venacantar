@@ -4,7 +4,7 @@ export class Campaign {
         public id?:any  ,
        public name?: String,
        public singers?:any,
-       public startDate?:any,
+       public status?:boolean,
        public endDate?:any,
        public votes?:[any]
       

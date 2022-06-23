@@ -13,7 +13,7 @@ import { MessageService } from 'primeng/api';
   providers: [MessageService,ConfirmationService]
 })
 export class CampaignComponent implements OnInit, OnDestroy {
-
+  checked: boolean;
   singers: Singer[]
   campaigns:Campaign[]
   campaign: Campaign
@@ -72,7 +72,21 @@ this.getSingers()
 
 
   }
-
+  handleChange(e:any, campaign:any) {
+    var isChecked = e.checked;
+    campaign.status=e.checked
+    this._campaignService.updateCampaign(campaign).subscribe(
+      res=>{
+        this.messageService.add({ severity: 'success', summary: 'Exito', detail: 'Registro actualizado satisfactoriamenete', life: 3000 }); 
+        this.getCampaigns()
+      },
+      error=>{
+        this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Ocurrio un error en la peticion' });
+      }
+    )
+     
+   
+}
   getSingers() {
     this._campaignService.getSingers().subscribe(
       resp => {
@@ -90,7 +104,7 @@ getCampaigns(){
     resp => {
       this.campaigns = resp
 this.campaigns.map(campana=>{
-  campana.startDate=new Date(campana.startDate);
+/*   campana.startDate=new Date(campana.startDate); */
   campana.endDate=new Date(campana.endDate)
 })
     },

@@ -7,6 +7,8 @@ import { UserService } from '../services/user.service';
 import { ConfirmationService } from 'primeng/api';
 import { MessageService } from 'primeng/api';
 import Swal from 'sweetalert2';
+import jwt_decode from 'jwt-decode';
+import { User } from '../models/user';
 
 @Component({
   selector: 'app-home',
@@ -15,7 +17,7 @@ import Swal from 'sweetalert2';
   providers: [MessageService, ConfirmationService]
 })
 export class HomeComponent implements OnInit, OnDestroy {
-
+  public user: any
   singers: Singer[]
   campaigns: Campaign[]
   campaign: Campaign
@@ -27,7 +29,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   clonedCampaigns: { [s: string]: Campaign; } = {};
   currentCampaign: Campaign
   campaignDialog: boolean;
-
+  public isValidEmail: boolean = false
 
 
   selectedCampaigns: Campaign[];
@@ -44,12 +46,17 @@ export class HomeComponent implements OnInit, OnDestroy {
 
     this.userSub = this._authService.user.subscribe(user => {
       this.isAuthenticated = !!user
-
       if (user != undefined && user != null) {
-        if (user.email) {
-          this.userEmail = user.email
+        this.user = user
+        if (user.email && user.email.startsWith('+')) {
+          this.isValidEmail = true
+        } else {
+          this.isValidEmail = this.verifyEmailValidation(this.user._token);
         }
+
       }
+
+      /* this.getAllVotes(user) */
 
     })
 
@@ -81,6 +88,16 @@ export class HomeComponent implements OnInit, OnDestroy {
       }
     )
   }
+
+  verifyEmailValidation(token: any) {
+    let newToken: any = jwt_decode(token)
+    if (newToken.email_verified) {
+      return newToken.email_verified
+    }
+
+
+  }
+
   onAddVote(singer: any) {
     if (this.userEmail!=undefined && this.userEmail!=null) {
       let voteToPush = {
@@ -134,7 +151,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 
         this.currentCampaign = this.campaigns[this.campaigns.length - 1]
         this.campaigns.map(campana => {
-          campana.startDate = new Date(campana.startDate);
+      /*     campana.startDate = new Date(campana.startDate); */
           campana.endDate = new Date(campana.endDate)
         })
       },

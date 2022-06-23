@@ -1,39 +1,154 @@
+<ng-container *ngIf="user!=undefined && user!=null && user.email== 'carlos.chicas463@yahoo.com'; else elseTemplate">
+    <p-tabView styleClass="tabview-custom">
+        <p-tabPanel>
+            <ng-template pTemplate = "header">
+                <i class="pi pi-user"></i>
+                <span>Cantantes</span>
+            </ng-template>
+            <app-singer></app-singer>
+        </p-tabPanel>
+        <p-tabPanel header="Header II">
+            <ng-template pTemplate = "header">
+                <i class="pi pi-calendar-plus"></i>
+                <span>Campañas de votación</span>
+            </ng-template>
+            <app-campaign></app-campaign>
+        </p-tabPanel>
+        <p-tabPanel header="Header III">
+            <ng-template pTemplate = "header">
+                <i class="pi pi-images"></i>
+           <span> Banners</span>
+                
+            </ng-template>
+               <app-banner></app-banner>
+        </p-tabPanel>
+    </p-tabView>
+</ng-container>
+<ng-template #elseTemplate>
 <div *ngIf="currentCampaign && currentCampaign.singers; else elseBlock">
     <p-toast></p-toast>
-    <div class="card" style="min-height: 100%; min-width: 100%;">
-        <div class="flex flex-column md:flex-row card-container align-items-center justify-content-center">
+    <div class="card" style="min-height: 100%; min-width: 100%; background-color: transparent;">
+        
+       <!--  <div class="flex flex-column md:flex-row card-container align-items-center justify-content-center">
             <div class="p-1">
 
                 <div class="grid">
                     <ng-template ngFor let-cantante [ngForOf]="currentCampaign.singers">
-                        <div class="sm:col-6 md:col-4 lg:col-4 xl:col-4 mb-2">
-                            <div class="surface-card shadow-2 border-round p-4" style="min-height: 100% !important;">
+                        <div class="col-5 col-offset-0 sm:col-5 md:col-6 lg:col-5 xl:col-5 mb-2">
+                            
+
+                            
+                            <div class="shadow-2 border-round p-4" style="min-height: 100% !important; background-color: transparent !important;">
                                 <div class="flex align-items-center justify-content-center">
-                                    <div class=" text-xl text-900 font-medium mb-5">{{cantante.name}}</div>
+                                    <div class=" text-xl text-900 font-medium mb-5"  style="color: white !important; min-height: 100px;">{{cantante.name}}</div>
                                 </div>
 
                                 <div class="min-w-full " style="min-height: 250px !important;">
-                                    <img src="../../assets/img/{{cantante.img}}" class="img-fluid" alt="..." style="max-height: 300px;">
+                                    <img src="../../assets/img/{{cantante.img}}" class="img-fluid" alt="..." style="max-height: 500px; border-radius: 25%;">
                                 </div>
 
                                 <div class="flex  justify-content-center align-items-center pt-3">
                                     <a type="button" *ngIf="isAuthenticated"
-                                        class="btn btn-danger" (click)="onAddVote(cantante)">Votar
+                                        class="btn btn-warning" (click)="onAddVote(cantante)">Votar
                                     </a>
-                                            <a type="button" class="btn btn-success" *ngIf="!isAuthenticated" [routerLink]="['/login']">Inicia sesion para votar</a>
+                                            <a type="button" class="btn btn-warning" *ngIf="!isAuthenticated" [routerLink]="['/login']">Inicia sesion para votar</a>
 
                                 </div>
                             </div>
                         </div>
+                   
                     </ng-template>
 
                 </div>
             </div>
-        </div>
-    </div>
+        </div> -->
+        <div class="flex flex-wrap md:flex-row card-container align-items-center justify-content-center">
+         <ng-container *ngIf=" !currentCampaign || !currentCampaign.status; else votingTemplate">
+            <div style="width:75% ;color: white;text-align: center;">
+                <h2>Aun no hay votación activa</h2>
+<h3>Espera para votar</h3>
+<p-progressBar mode="indeterminate"></p-progressBar>
+            </div>
+            <div class="w-5 scalein animation-duration-1000">
+                            
+
+                            
+                <div class="shadow-2 border-round p-4" style="min-height: 100% !important; background-color: transparent !important;">
+                    <div class="flex align-items-center justify-content-center">
+                        <div class=" text-xl text-900 font-medium mb-2"  style="color: white !important; min-height: 80px;">?????????</div>
+                    </div>
+
+                    <div class="min-w-full " style="min-height: 180px !important; text-align: center;">
+                        <img src="../../assets/img/uknown.png" class="img-fluid" alt="..." style="max-height: 500px; border-radius: 25%;">
+                    </div>
+
+                    <div class="flex  justify-content-center align-items-center pt-3">
+                        <a type="button" 
+                            class="btn btn-warning" >Espera para Votar
+                        </a>
+                              
+
+                    </div>
+                </div>
+            </div>
+            <div class="w-5 scalein animation-duration-1000">
+                            
+
+                            
+                <div class="shadow-2 border-round p-4" style="min-height: 100% !important; background-color: transparent !important;">
+                    <div class="flex align-items-center justify-content-center">
+                        <div class=" text-xl text-900 font-medium mb-2"  style="color: white !important; min-height: 80px;">?????????</div>
+                    </div>
+
+                    <div class="min-w-full " style="min-height: 180px !important; text-align: center;">
+                        <img src="../../assets/img/uknown.png" class="img-fluid" alt="..." style="max-height: 500px; border-radius: 25%;">
+                    </div>
+
+                    <div class="flex  justify-content-center align-items-center pt-3">
+                        <a type="button" 
+                            class="btn btn-warning" >Espera para Votar
+                        </a>
+                              
+
+                    </div>
+                </div>
+            </div>
+         </ng-container>
+<ng-template #votingTemplate>
+                    <ng-template ngFor let-cantante [ngForOf]="currentCampaign.singers" >
+                        <div class="w-5 scalein animation-duration-1000">
+                            
+
+                            
+                            <div class="shadow-2 border-round p-4" style="min-height: 100% !important; background-color: transparent !important;">
+                                <div class="flex align-items-center justify-content-center">
+                                    <div class=" text-xl text-900 font-medium mb-5"  style="color: white !important; min-height: 100px;">{{cantante.name}}</div>
+                                </div>
+
+                                <div class="min-w-full " style="min-height: 250px !important; text-align: center;">
+                                    <img src="../../assets/img/{{cantante.img}}" class="img-fluid" alt="..." style="max-height: 500px; border-radius: 25%;">
+                                </div>
+
+                                <div class="flex  justify-content-center align-items-center pt-3">
+                                    <a type="button" *ngIf="isAuthenticated"
+                                        class="btn btn-warning" (click)="onAddVote(cantante)">Votar
+                                    </a>
+                                            <a type="button" class="btn btn-warning" *ngIf="!isAuthenticated" [routerLink]="['/login']">Inicia sesion para votar</a>
+
+                                </div>
+                            </div>
+                        </div>
+                   
+                    </ng-template>
+   </ng-template>
+            </div>
+     
+        </div> 
+    
 </div>
 <ng-template #elseBlock>
     <div class="centered-disc">
         <p-progressSpinner></p-progressSpinner>
     </div>
+</ng-template>
 </ng-template>

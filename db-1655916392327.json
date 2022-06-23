@@ -3,7 +3,7 @@
     {
       "id": 1,
       "name": "daddy yankee",
-      "img": "nicky-jam.jpg",
+      "img": "daddy-yankee.jpg",
       "info": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged"
     },
     {
@@ -15,19 +15,19 @@
     {
       "id": 3,
       "name": "Dua Lipa",
-      "img": "nicky-jam.jpg",
+      "img": "dua-lipa.jpg",
       "info": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged"
     },
     {
       "id": 4,
       "name": "Marito Rivera",
-      "img": "nicky-jam.jpg",
+      "img": "nigeria-talent.jpg",
       "info": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged"
     },
     {
       "id": 5,
       "name": "Michael Jackson",
-      "img": "nicky-jam.jpg",
+      "img": "michael-jackson.jpg",
       "info": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged"
     }
   ],
@@ -44,13 +44,13 @@
         {
           "id": 4,
           "name": "Marito Rivera",
-          "img": "nicky-jam.jpg",
+          "img": "nigeria-talent.jpg",
           "info": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged"
         },
         {
           "id": 5,
           "name": "Michael Jackson",
-          "img": "nicky-jam.jpg",
+          "img": "michael-jackson.jpg",
           "info": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged"
         }
       ],
@@ -71,7 +71,7 @@
         {
           "id": 4,
           "name": "Marito Rivera",
-          "img": "nicky-jam.jpg",
+          "img": "nigeria-talent.jpg",
           "info": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged"
         }
       ],
@@ -86,13 +86,13 @@
         {
           "id": 3,
           "name": "Dua Lipa",
-          "img": "nicky-jam.jpg",
+          "img": "dua-lipa.jpg",
           "info": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged"
         },
         {
           "id": 5,
           "name": "Michael Jackson",
-          "img": "nicky-jam.jpg",
+          "img": "michael-jackson.jpg",
           "info": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged"
         }
       ],
@@ -106,13 +106,13 @@
         {
           "id": 4,
           "name": "Marito Rivera",
-          "img": "nicky-jam.jpg",
+          "img": "nigeria-talent.jpg",
           "info": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged"
         },
         {
           "id": 1,
           "name": "daddy yankee",
-          "img": "nicky-jam.jpg",
+          "img": "daddy-yankee.jpg",
           "info": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged"
         }
       ],
@@ -132,13 +132,13 @@
         {
           "id": 4,
           "name": "Marito Rivera",
-          "img": "nicky-jam.jpg",
+          "img": "nigeria-talent.jpg",
           "info": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged"
         },
         {
           "id": 3,
           "name": "Dua Lipa",
-          "img": "nicky-jam.jpg",
+          "img": "dua-lipa.jpg",
           "info": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged"
         }
       ],
@@ -158,7 +158,7 @@
         {
           "id": 5,
           "name": "Michael Jackson",
-          "img": "nicky-jam.jpg",
+          "img": "michael-jackson.jpg",
           "info": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged"
         },
         {
@@ -172,28 +172,6 @@
       "endDate": "2022-06-23T22:59:03.000Z",
       "id": 8,
       "status": false
-    }
-  ],
-  "banners": [
-    {
-      "description": "banner 1",
-      "image": "https://d172ao1khilsti.cloudfront.net/big-sale-files/79ee2a37-91f0-4412-8e0d-0383592553ea.jpg",
-      "id": 1
-    },
-    {
-      "description": "banner 1",
-      "image": "https://d172ao1khilsti.cloudfront.net/big-sale-files/27244089-4211-4099-a3a8-c482e496edaf.jpg",
-      "id": 2
-    },
-    {
-      "description": "silver",
-      "image": "https://d172ao1khilsti.cloudfront.net/big-sale-files/6b6aec20-cb07-48cc-a6eb-916669ff4300.jpg",
-      "id": 3
-    },
-    {
-      "description": "banner 1",
-      "image": "https://d172ao1khilsti.cloudfront.net/big-sale-files/3d328b64-bb3b-446e-a3f5-102a088e2290.jpg",
-      "id": 4
     }
   ],
   "profile": {

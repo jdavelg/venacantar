@@ -1,0 +1,87 @@
+<p-toast></p-toast>
+
+<div class="card">
+    <p-toolbar styleClass="mb-4">
+        <ng-template pTemplate="left">
+            <button pButton pRipple label="New" icon="pi pi-plus" class="p-button-success mr-2" (click)="openNew()"></button>
+            <button pButton pRipple label="Delete" icon="pi pi-trash" class="p-button-danger" (click)="deleteSelectedBanners()" [disabled]="!selectedBanners || !selectedBanners.length"></button>
+        </ng-template>
+
+        <ng-template pTemplate="right">
+        </ng-template>
+    </p-toolbar>
+
+    <p-table #dt [value]="banners" [rows]="10" [paginator]="true" [globalFilterFields]="['id']" responsiveLayout="scroll"
+        [(selection)]="selectedBanners" [rowHover]="true" dataKey="id"
+        currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [showCurrentPageReport]="true">
+        <ng-template pTemplate="caption">
+            <div class="flex align-items-center justify-content-between">
+                <h5 class="m-0">Administrar Banners</h5>
+                <span class="p-input-icon-left">
+                    <i class="pi pi-search"></i>
+                    <input pInputText type="text" (input)="dt.filterGlobal($event.target.value , 'contains')" placeholder="Search..." />
+                </span>
+            </div>
+        </ng-template>
+        <ng-template pTemplate="header">
+            <tr>
+                <th style="width: 3rem">
+                    <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+                </th>
+                <th pSortableColumn="id">Id <p-sortIcon field="id"></p-sortIcon></th>
+                <th pSortableColumn="image">Image </th>
+                <th pSortableColumn="description">Description <p-sortIcon field="description"></p-sortIcon></th>
+             
+     
+                <th></th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-banner>
+            <tr>
+                <td>
+                    <p-tableCheckbox [value]="banner"></p-tableCheckbox>
+                </td>
+                <td>{{banner.id}}</td>
+                <td><img src="{{banner.image}}" alt="" height="50" width="75"></td>
+                <td>{{banner.description }}</td>
+               
+                 <td>
+                    <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2" (click)="editCampaign(banner)"></button>
+                    <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="deleteCampaign(banner)"></button>
+                </td>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="summary">
+            <div class="flex align-items-center justify-content-between">
+                En total hay {{banners ? banners.length : 0 }} campañas.
+            </div>
+        </ng-template>
+    </p-table>
+</div>
+
+<p-dialog [(visible)]="bannerDialog" [style]="{width: '450px', minHeight:'95%'}" header="banner Details" [modal]="true" styleClass="p-fluid">
+    <ng-template pTemplate="content">
+     
+        <div class="field">
+            <label for="description">Descripcion</label>
+            <input type="text" pInputText id="description" [(ngModel)]="banner.description" required autofocus />
+            <small class="p-error" *ngIf="submitted && !banner.name">Nombre es requerido.</small>
+        </div>
+        <div class="field">
+            <label for="image">Imagen</label>
+                       
+            <input type="file" (change)="onFileSelected($event)" class="form-control">
+            
+        </div>
+   
+       
+    </ng-template>
+
+    <ng-template pTemplate="footer">
+        <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button>
+        <button pButton pRipple label="Save" icon="pi pi-check" class="p-button-text" (click)="onSubmit()"></button>
+    </ng-template>
+</p-dialog>
+
+<p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog>
+
