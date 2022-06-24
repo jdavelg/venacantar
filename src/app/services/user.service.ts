@@ -66,9 +66,9 @@ export class UserService {
   }
 
   getToken() {
-    let token = localStorage.getItem('token')
+    let token:any = localStorage.getItem('userData')
     if (token != undefined) {
-      return token
+      return token._token
     } else {
       return '0'
     }

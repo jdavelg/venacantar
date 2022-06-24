@@ -3,32 +3,38 @@
     {
       "id": 1,
       "name": "daddy yankee",
-      "img": "nicky-jam.jpg",
+      "image": "../../assets/img/nicky-jam.jpg",
       "info": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged"
     },
     {
       "id": 2,
       "name": "Nicky Jam",
-      "img": "nicky-jam.jpg",
+      "image": "../../assets/img/nicky-jam.jpg",
       "info": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged"
     },
     {
       "id": 3,
       "name": "Dua Lipa",
-      "img": "nicky-jam.jpg",
+      "image": "../../assets/img/nicky-jam.jpg",
       "info": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged"
     },
     {
       "id": 4,
       "name": "Marito Rivera",
-      "img": "nicky-jam.jpg",
+      "image": "../../assets/img/nicky-jam.jpg",
       "info": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged"
     },
     {
       "id": 5,
       "name": "Michael Jackson",
-      "img": "nicky-jam.jpg",
+      "image": "../../assets/img/nicky-jam.jpg",
       "info": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged"
+    },
+    {
+      "name": "6iix9ine",
+      "info": "Esta es la info del cantante",
+      "image": "https://d172ao1khilsti.cloudfront.net/big-sale-files/fbc1852f-a869-4347-8b27-6d55d2515fdb.jpg",
+      "id": 6
     }
   ],
   "campaigns": [
@@ -38,19 +44,19 @@
         {
           "id": 2,
           "name": "Nicky Jam",
-          "img": "nicky-jam.jpg",
+          "image": "../../assets/img/nicky-jam.jpg",
           "info": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged"
         },
         {
           "id": 4,
           "name": "Marito Rivera",
-          "img": "nicky-jam.jpg",
+          "image": "../../assets/img/nicky-jam.jpg",
           "info": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged"
         },
         {
           "id": 5,
           "name": "Michael Jackson",
-          "img": "nicky-jam.jpg",
+          "image": "../../assets/img/nicky-jam.jpg",
           "info": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged"
         }
       ],
@@ -65,13 +71,13 @@
         {
           "id": 2,
           "name": "Nicky Jam",
-          "img": "nicky-jam.jpg",
+          "image": "../../assets/img/nicky-jam.jpg",
           "info": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged"
         },
         {
           "id": 4,
           "name": "Marito Rivera",
-          "img": "nicky-jam.jpg",
+          "image": "../../assets/img/nicky-jam.jpg",
           "info": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged"
         }
       ],
@@ -86,13 +92,13 @@
         {
           "id": 3,
           "name": "Dua Lipa",
-          "img": "nicky-jam.jpg",
+          "image": "../../assets/img/nicky-jam.jpg",
           "info": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged"
         },
         {
           "id": 5,
           "name": "Michael Jackson",
-          "img": "nicky-jam.jpg",
+          "image": "../../assets/img/nicky-jam.jpg",
           "info": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged"
         }
       ],
@@ -106,13 +112,13 @@
         {
           "id": 4,
           "name": "Marito Rivera",
-          "img": "nicky-jam.jpg",
+          "image": "../../assets/img/nicky-jam.jpg",
           "info": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged"
         },
         {
           "id": 1,
           "name": "daddy yankee",
-          "img": "nicky-jam.jpg",
+          "image": "../../assets/img/nicky-jam.jpg",
           "info": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged"
         }
       ],
@@ -132,13 +138,13 @@
         {
           "id": 4,
           "name": "Marito Rivera",
-          "img": "nicky-jam.jpg",
+          "image": "../../assets/img/nicky-jam.jpg",
           "info": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged"
         },
         {
           "id": 3,
           "name": "Dua Lipa",
-          "img": "nicky-jam.jpg",
+          "image": "../../assets/img/nicky-jam.jpg",
           "info": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged"
         }
       ],
@@ -158,13 +164,13 @@
         {
           "id": 5,
           "name": "Michael Jackson",
-          "img": "nicky-jam.jpg",
+          "image": "../../assets/img/nicky-jam.jpg",
           "info": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged"
         },
         {
           "id": 2,
           "name": "Nicky Jam",
-          "img": "nicky-jam.jpg",
+          "image": "../../assets/img/nicky-jam.jpg",
           "info": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged"
         }
       ],
@@ -172,6 +178,26 @@
       "endDate": "2022-06-23T22:59:03.000Z",
       "id": 8,
       "status": false
+    },
+    {
+      "singers": [
+        {
+          "id": 3,
+          "name": "Dua Lipa",
+          "image": "../../assets/img/nicky-jam.jpg",
+          "info": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged"
+        },
+        {
+          "id": 1,
+          "name": "daddy yankee",
+          "image": "../../assets/img/nicky-jam.jpg",
+          "info": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged"
+        }
+      ],
+      "name": "campania ultima",
+      "endDate": "2022-06-29T02:30:43.000Z",
+      "id": 9,
+      "status": true
     }
   ],
   "banners": [

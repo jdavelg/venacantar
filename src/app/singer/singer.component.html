@@ -45,7 +45,7 @@
                     <p-tableCheckbox [value]="singer"></p-tableCheckbox>
                 </td>
                 <td>{{singer.name}}</td>
-                <td><img [src]="'../assets/img/'+ singer.img " [alt]="singer.image" width="100" class="shadow-4" /></td>
+                <td><img src="{{singer.image}}"   width="100" class="shadow-4" /></td>
                 <td>{{singer.info }}</td>
                 <!-- <td>{{singer.category}}</td>
                 <td><p-rating [ngModel]="singer.rating" readonly="true" cancel="false"></p-rating></td>
@@ -66,14 +66,18 @@
 
 <p-dialog [(visible)]="singerDialog" [style]="{width: '450px'}" header="singer Details" [modal]="true" styleClass="p-fluid">
     <ng-template pTemplate="content">
-        <img [src]="'../assets/img/'+ singer.img" [alt]="singer.image" class="singer-image" *ngIf="singer.image">
+        <!-- <img [src]="'../assets/img/'+ singer.img" [alt]="singer.image" class="singer-image" *ngIf="singer.image"> -->
         <div class="field">
             <label for="name">Name</label>
             <input type="text" pInputText id="name" [(ngModel)]="singer.name" required autofocus />
             <small class="p-error" *ngIf="submitted && !singer.name">Nombre is required.</small>
         </div>
         <div class="field">
-            <label for="info">Description</label>
+            <label for="image"></label>
+            <input type="file" (change)="onFileSelected($event)" class="form-control">
+        </div>
+        <div class="field">
+            <label for="info">Informacion</label>
             <textarea id="info" pInputTextarea [(ngModel)]="singer.info" required rows="3" cols="20"></textarea>
         </div>
     <!--     <div class="field">
@@ -121,7 +125,7 @@
 
     <ng-template pTemplate="footer">
         <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button>
-        <button pButton pRipple label="Save" icon="pi pi-check" class="p-button-text" (click)="saveSinger()"></button>
+        <button pButton pRipple label="Save" icon="pi pi-check" class="p-button-text" (click)="onSubmit()"></button>
     </ng-template>
 </p-dialog>
 

@@ -185,6 +185,7 @@ this.campaigns.map(campana=>{
   saveCampaign() {
     this.submitted = true;
   /*   console.log('campania', this.campaign); */
+    console.log(this.campaign);
     
      if (this.campaign.id !== undefined && this.campaign.id != null) {
    

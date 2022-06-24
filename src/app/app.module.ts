@@ -44,10 +44,10 @@ const firebaseUiAuthConfig: ExtendedFirebaseUIAuthConfig= {
 
   signInOptions: [
     firebase.auth.GoogleAuthProvider.PROVIDER_ID,
-    {
+ /*    {
       defaultCountry: 'SV',
       provider: firebase.auth.PhoneAuthProvider.PROVIDER_ID
-    },
+    }, */
 
 
   ],

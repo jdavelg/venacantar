@@ -5,6 +5,8 @@ import { AuthService } from '../services/auth.service';
 import { UserService } from '../services/user.service';
 import { ConfirmationService } from 'primeng/api';
 import { MessageService } from 'primeng/api';
+import Swal from 'sweetalert2';
+import { global } from '../models/global';
 @Component({
   selector: 'app-singer',
   templateUrl: './singer.component.html',
@@ -19,9 +21,10 @@ export class SingerComponent implements OnInit, OnDestroy {
   private userSub: Subscription
   public nominateds: any
   public userEmail: any
+  selectedFile: File | any;
   public connectedToB: boolean = true
   clonedSingers: { [s: string]: Singer; } = {};
-
+status:any
   singerDialog: boolean;
 
 
@@ -65,6 +68,81 @@ export class SingerComponent implements OnInit, OnDestroy {
     this.userSub.unsubscribe()
 
   }
+  onFileSelected(event: any) {
+    this.selectedFile = <File>event.target.files[0]
+    console.log(this.selectedFile);
+
+  }
+
+  onSubmit(banner?: any) {
+
+
+    let fd = new FormData();
+
+    fd.append('thumbnail', this.selectedFile, this.selectedFile.name)
+
+
+
+    this._singerService.uploadImage(fd).subscribe(
+      response => {
+        if (response.path) {
+          console.log(response.path);
+          let firstPath = response.path
+
+          let pathtoadd = firstPath.split("https://clips-vod-tcs.s3.amazonaws.com/")
+          let definitelypath = global.toReplace + pathtoadd[1]
+          console.log(definitelypath);
+
+          this.singer.image = definitelypath
+          /* start banner */
+          this._singerService.saveSinger(this.singer).subscribe(
+            response => {
+              if (response) {
+                console.log(response);
+                
+                this.status = 'success'
+               
+                this.getSingers()
+               this.hideDialog()
+                Swal.fire(
+                  'muy bien!',
+                  'El banner se ha guardado!',
+                  'success'
+                )
+
+              }
+            },
+
+            error => {
+              console.log(error);
+              this.status = "error"
+              Swal.fire(
+                'lo sentimos!',
+                'Hubo un error al intentar guardar el banner!',
+                'error'
+              )
+
+            }
+          )
+
+        }
+
+      },
+      error => {
+        Swal.fire(
+          'Error!',
+          'El registro no se ha guardado.',
+          'error'
+        )
+      }
+    )
+
+
+
+
+
+  }
+
   SignOut() {
 
 
