@@ -8,8 +8,8 @@
         </ng-template>
 
         <ng-template pTemplate="right">
-            <p-fileUpload mode="basic" accept="image/*" [maxFileSize]="1000000" label="Import" chooseLabel="Import" class="mr-2 inline-block"></p-fileUpload>
-            <button pButton pRipple label="Export" icon="pi pi-upload" class="p-button-help"></button>
+           <!--  <p-fileUpload mode="basic" accept="image/*" [maxFileSize]="1000000" label="Import" chooseLabel="Import" class="mr-2 inline-block"></p-fileUpload>
+            <button pButton pRipple label="Export" icon="pi pi-upload" class="p-button-help"></button> -->
         </ng-template>
     </p-toolbar>
 
@@ -51,8 +51,8 @@
                 <td><p-rating [ngModel]="singer.rating" readonly="true" cancel="false"></p-rating></td>
                 <td><span [class]="'singer-badge status-' + (singer.inventoryStatus ? singer.inventoryStatus.toLowerCase() : '')">{{singer.inventoryStatus}}</span></td> -->
                 <td>
-                    <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2" (click)="editSinger(singer)"></button>
-                    <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="deleteSinger(singer)"></button>
+              <!--       <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2" (click)="editSinger(singer)"></button> -->
+                    <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-danger" (click)="deleteSinger(singer)"></button>
                 </td>
             </tr>
         </ng-template>

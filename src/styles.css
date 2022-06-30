@@ -4,15 +4,21 @@
     position: fixed; /* or absolute */
     top: 50%;
     left: 50%;
+    background-color: transparent;
   }
   .maindiv{
     background-image: url('./assets/img/background.png');
     background-size:     cover;                      /* <------ */
     background-repeat:   no-repeat;
     background-position: center center; 
+    min-height: 100% !important;
   }
   .p-progressbar .p-progressbar-value {
     border: 0 none;
     margin: 0;
     background: #ffc107 !important;
+}
+html, body {
+  height: 100%;
+  margin: 0px;
 }

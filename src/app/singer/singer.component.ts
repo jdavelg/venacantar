@@ -74,7 +74,7 @@ status:any
 
   }
 
-  onSubmit(banner?: any) {
+  onSubmit(participante?: any) {
 
 
     let fd = new FormData();
@@ -94,7 +94,7 @@ status:any
           console.log(definitelypath);
 
           this.singer.image = definitelypath
-          /* start banner */
+          /* start participante */
           this._singerService.saveSinger(this.singer).subscribe(
             response => {
               if (response) {
@@ -106,7 +106,7 @@ status:any
                this.hideDialog()
                 Swal.fire(
                   'muy bien!',
-                  'El banner se ha guardado!',
+                  'El participante se ha guardado!',
                   'success'
                 )
 
@@ -118,7 +118,7 @@ status:any
               this.status = "error"
               Swal.fire(
                 'lo sentimos!',
-                'Hubo un error al intentar guardar el banner!',
+                'Hubo un error al intentar guardar el participante!',
                 'error'
               )
 

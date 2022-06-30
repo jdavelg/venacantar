@@ -59,7 +59,8 @@
                 <td><span [class]="'singer-badge status-' + (singer.inventoryStatus ? singer.inventoryStatus.toLowerCase() : '')">{{singer.inventoryStatus}}</span></td> -->
                 <td>
                     <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2" (click)="editCampaign(campaign)"></button>
-                    <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="deleteCampaign(campaign)"></button>
+                    <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-danger" (click)="deleteCampaign(campaign)"></button>
+                    <button pButton pRipple icon="pi pi-chart-bar" class="p-button-rounded p-button-warning"  label="Estadisticas" (click)="openStats(campaign.id)"></button>
                 </td>
             </tr>
         </ng-template>
@@ -73,11 +74,11 @@
 
 <p-dialog [(visible)]="campaignDialog" [style]="{width: '450px', minHeight:'95%'}" header="singer Details" [modal]="true" styleClass="p-fluid">
     <ng-template pTemplate="content">
-        <div class="field">
+        <div class="field mt-3">
             <label for="singers">Cantantes</label>
             <p-multiSelect [options]="singers" [(ngModel)]="campaign.singers" optionLabel="name" display="chip" ></p-multiSelect>
         </div>
-        <div class="field">
+        <div class="field mt-2" >
             <label for="name">Name</label>
             <input type="text" pInputText id="name" [(ngModel)]="campaign.name" required autofocus />
             <small class="p-error" *ngIf="submitted && !campaign.name">Nombre es requerido.</small>
@@ -87,10 +88,10 @@
        
             <p-toggleButton (onChange)="handleChange($event, campaign)" onLabel="ACTIVADA" offLabel="DESACTIVADA" [(ngModel)]="campaign.status"  ></p-toggleButton>
         </div>
-        <div class="field">
+        <div class="field mt-2">
             <label for="endDate">Fecha de fin</label>
                            
-                <p-calendar [(ngModel)]="campaign.endDate" [showTime]="true" dateFormat="dd-mm-yy" inputId="dateformat"></p-calendar>
+                <p-calendar [(ngModel)]="campaign.endDate" [showTime]="true" [inline]="true" dateFormat="dd-mm-yy" inputId="dateformat"></p-calendar>
             
         </div>
         <!-- <div class="field">
@@ -105,4 +106,14 @@
     </ng-template>
 </p-dialog>
 
+<p-dialog [(visible)]="statsDialog" [style]="{width: '80%', minHeight:'95%'}" header="Detalle de campaña" [modal]="true" styleClass="p-fluid">
+    <ng-template pTemplate="content">
+  <app-stats [campaignId]="campaignId"></app-stats>
+    </ng-template>
+
+    <ng-template pTemplate="footer">
+        <button pButton pRipple label="Cerrar" icon="pi pi-times" class="p-button-rounded p-button-danger" (click)="hideStatsDialog()"></button>
+        <!-- <button pButton pRipple label="Save" icon="pi pi-check" class="p-button-text" (click)="saveCampaign()"></button> -->
+    </ng-template>   
+</p-dialog>
 <p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog>

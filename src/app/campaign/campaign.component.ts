@@ -25,8 +25,8 @@ export class CampaignComponent implements OnInit, OnDestroy {
   clonedCampaigns: { [s: string]: Campaign; } = {};
 
   campaignDialog: boolean;
-
-
+statsDialog:boolean=false
+campaignId:any
 
   selectedCampaigns: Campaign[];
 
@@ -102,6 +102,8 @@ this.getSingers()
 getCampaigns(){
   this._campaignService.getCampaings().subscribe(
     resp => {
+      console.log('campaigns ', resp);
+      
       this.campaigns = resp
 this.campaigns.map(campana=>{
 /*   campana.startDate=new Date(campana.startDate); */
@@ -176,6 +178,15 @@ this.campaigns.map(campana=>{
     });
   }
 
+  openStats(id:any){
+this.campaignId=id
+    this.statsDialog=true
+  }
+
+  hideStatsDialog(){
+    this.campaignId=null
+    this.statsDialog=false
+  }
   hideDialog() {
     this.campaign = {}
     this.campaignDialog = false;
@@ -191,7 +202,7 @@ this.campaigns.map(campana=>{
    
       this._campaignService.updateCampaign(this.campaign).subscribe(
         resp => {
-          this.messageService.add({ severity: 'success', summary: 'Exito', detail: 'Registro actualizadp', life: 3000 });
+          this.messageService.add({ severity: 'success', summary: 'Exito', detail: 'Registro actualizado', life: 3000 });
           this.hideDialog()
           this.getCampaigns()
         },
@@ -202,9 +213,9 @@ this.campaigns.map(campana=>{
     } else {
       this._campaignService.saveCampaign(this.campaign).subscribe(
         resp => {
-          this.messageService.add({ severity: 'success', summary: 'Exito', detail: 'Registro guardado', life: 3000 });
-          this.getCampaigns()
+          this.messageService.add({ severity: 'success', summary: 'Exito', detail: 'Registro guardado', life: 3000 });         
           this.hideDialog()
+           this.getCampaigns()
         },
         err => {
           this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Error en el servidor al guardar el registro', life: 3000 });

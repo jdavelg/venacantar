@@ -30,13 +30,15 @@ export class HomeComponent implements OnInit, OnDestroy {
   currentCampaign: Campaign
   campaignDialog: boolean;
   public isValidEmail: boolean = false
-
+  isAdministrator: boolean = false
 
   selectedCampaigns: Campaign[];
 
   submitted: boolean;
 
   statuses: any[];
+
+  onRequest: boolean = false
   constructor(
 
     private _authService: AuthService,
@@ -77,6 +79,19 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.userSub.unsubscribe()
 
   }
+  isAdmin() {
+    this._campaignService.getPermissions().subscribe(
+      resp => {
+        if (resp.length >= 1) {
+          resp.map(element => {
+            if (element.email == this.user.email) {
+              this.isAdministrator=true
+            }
+          })
+        }
+      }
+    )
+  }
   getSingers() {
     this._campaignService.getSingers().subscribe(
       resp => {
@@ -91,57 +106,100 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   verifyEmailValidation(token: any) {
     let newToken: any = jwt_decode(token)
-    if (newToken.email_verified) {
-      return newToken.email_verified
-    }
+    /* console.log('new token', newToken);
+    
+      console.log('retorno', newToken.email_verified); */
+
+    return newToken.email_verified
+
 
 
   }
 
   onAddVote(singer: any) {
-    if (this.userEmail!=undefined && this.userEmail!=null) {
-      let voteToPush = {
-      singerId: singer.id,
-      user: this.userEmail
-    }
-    let exists:Boolean=false
-    if (this.currentCampaign.votes!=undefined && this.currentCampaign.votes!=null) {
-       this.currentCampaign.votes.map(voto=>{
-      if (voto.user ==this.userEmail) {
-        exists=true
-      }
-    })
-    }
-   
-    if (this.currentCampaign!=undefined &&  exists==false) {
-   
-      if (!this.currentCampaign.votes) {
-        this.currentCampaign['votes']=[voteToPush]
-      }else{
-         this.currentCampaign.votes.push(voteToPush)
-      }
-     
-      console.log(this.currentCampaign);
-      
-        this._campaignService.saveVote(this.currentCampaign).subscribe(
-      resp=>{
-        this.messageService.add({ severity: 'success', summary: 'Exito', detail: 'Voto guardado, puedes volver a votar hasta la proxima semana', life: 1000 });
-      },
-      err=>{
-        this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Ocurrio un error al conectarse al servidor, o al guardar el voto' });  
-      }
-    )
-    } else {
-      this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Ya registraste tu voto, espera hasta la siguiente semana' }); 
-    }
-  
+    /* verify if is request is false */
+    if (this.onRequest == false) {
 
-    } else {
-      
-      this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Por favor inicia sesion para votar' });
-      
+      /* If email is verified continue */
+      if (this.isValidEmail != false) {
+        this.userEmail = this.user.email
+        /*  console.log(this.user);
+         console.log(this.isValidEmail); */
+        if (this.userEmail != undefined && this.userEmail != null) {
+          let voteToPush = {
+            singerId: singer.id,
+            value: this.userEmail,
+            campaignId: this.currentCampaign.id
+
+          }
+          /*   let exists:Boolean=false
+            if (this.currentCampaign.votes!=undefined && this.currentCampaign.votes!=null) {
+               this.currentCampaign.votes.map(voto=>{
+              if (voto.user ==this.userEmail) {
+                exists=true
+              }
+            })
+            } */
+
+          if (this.currentCampaign != undefined) {
+
+            /* if (!this.currentCampaign.votes) {
+              this.currentCampaign['votes']=[voteToPush]
+            }else{
+               this.currentCampaign.votes.push(voteToPush)
+            } */
+
+
+            this.onRequest = true
+            this._campaignService.saveVote(voteToPush, this.user._token).subscribe(
+              resp => {
+                console.log(resp);
+
+                Swal.fire(
+                  'muy bien!',
+                  'Haz votado correctamente,recuerda que puedes volver a votar hasta la proxima votacion!',
+                  'success'
+                )
+                this.onRequest = false
+              },
+              err => {
+                console.log(err);
+
+                Swal.fire(
+                  'ERROR!',
+                  'Ocurrio un error de red o ya finalizo el periodo de votacion!',
+                  'error'
+                )
+                this.onRequest = false
+              }
+            )
+          } else {
+            Swal.fire(
+              'ERROR!',
+              'Ocurrio un error de red o ya finalizo el periodo de votacion!',
+              'error'
+            )
+          }
+
+
+        } else {
+
+          this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Por favor inicia sesion para votar' });
+
+        }
+      } else {
+        Swal.fire(
+          'AVISO!',
+          'Debes verificar tu email para poder votar, revisa en la bandeja de entrada o la carpeta spam el correo que te hemos enviado, luego vuelve a iniciar sesion',
+          'info'
+        )
+      }
+
+
     }
-    
+
+
+
 
   }
   getCampaigns() {
@@ -151,7 +209,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 
         this.currentCampaign = this.campaigns[this.campaigns.length - 1]
         this.campaigns.map(campana => {
-      /*     campana.startDate = new Date(campana.startDate); */
+          /*     campana.startDate = new Date(campana.startDate); */
           campana.endDate = new Date(campana.endDate)
         })
       },

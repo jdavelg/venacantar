@@ -197,7 +197,13 @@
       "name": "campania ultima",
       "endDate": "2022-06-29T02:30:43.000Z",
       "id": 9,
-      "status": true
+      "status": true,
+      "votes": [
+        {
+          "singerId": 1,
+          "user": "jdavelg@gmail.com"
+        }
+      ]
     }
   ],
   "banners": [

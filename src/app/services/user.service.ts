@@ -56,13 +56,13 @@ export class UserService {
   getSingers(): Observable<any> {
     /* 
         let headers = new HttpHeaders().set('Authorization', this.getToken()) */
-    return this._http.get(global.url + 'singers', /* { headers: headers } */)
+    return this._http.get(global.url + 'singers/', /* { headers: headers } */)
   }
 
   getCampaings(): Observable<any> {
     /* 
         let headers = new HttpHeaders().set('Authorization', this.getToken()) */
-    return this._http.get(global.url + 'campaigns', /* { headers: headers } */)
+    return this._http.get(global.url + 'campaigns/', /* { headers: headers } */)
   }
 
   getToken() {
@@ -75,7 +75,11 @@ export class UserService {
 
   }
 
+getCampaignData():Observable<any>{
 
+
+  return this._http.get(global.url + 'campaigns'/* , { headers: headers } */)
+}
   getBanners(): Observable<any> {
     return this._http.get(global.url + 'banners')
   }
@@ -89,11 +93,11 @@ export class UserService {
 
   }
 
-  saveVote(campaign: any): Observable<any> {
-    let headers = new HttpHeaders().set('Content-Type', 'application/json')
+  saveVote(campaign: any, token:any): Observable<any> {
+    let headers = new HttpHeaders().set('Content-Type', 'application/json').set('Authorization', token)
 
 
-    return this._http.put(global.url + 'campaigns/' + campaign.id, campaign, { headers: headers })
+    return this._http.post(global.url + 'votes/' , campaign, { headers: headers })
   }
 
   getCounter(): Observable<any> {
@@ -108,6 +112,10 @@ export class UserService {
 
     return this._http.post(global.url + 'singers', params, { headers: headers })
   }
+
+getPermissions(): Observable<any>{
+  return this._http.get(global.url + 'administrators')
+}
 
   saveCampaign(form: any): Observable<any> {
     /* 
@@ -130,7 +138,7 @@ export class UserService {
     let headers = new HttpHeaders().set('Content-Type', 'application/json')
     let params: any = form
 
-    return this._http.put(global.url + 'campaigns/' + params.id, params, { headers: headers })
+    return this._http.patch(global.url + 'campaigns/' + params.id, params, { headers: headers })
   }
 
   updateBanner(form: any): Observable<any> {
