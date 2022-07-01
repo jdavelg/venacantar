@@ -58,7 +58,7 @@
                 <td><p-rating [ngModel]="singer.rating" readonly="true" cancel="false"></p-rating></td>
                 <td><span [class]="'singer-badge status-' + (singer.inventoryStatus ? singer.inventoryStatus.toLowerCase() : '')">{{singer.inventoryStatus}}</span></td> -->
                 <td>
-                    <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2" (click)="editCampaign(campaign)"></button>
+                    <!-- <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2" (click)="editCampaign(campaign)"></button> -->
                     <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-danger" (click)="deleteCampaign(campaign)"></button>
                     <button pButton pRipple icon="pi pi-chart-bar" class="p-button-rounded p-button-warning"  label="Estadisticas" (click)="openStats(campaign.id)"></button>
                 </td>
@@ -84,7 +84,7 @@
             <small class="p-error" *ngIf="submitted && !campaign.name">Nombre es requerido.</small>
         </div>
 
-        <div class="field">
+        <div class="field" style="display: none;">
        
             <p-toggleButton (onChange)="handleChange($event, campaign)" onLabel="ACTIVADA" offLabel="DESACTIVADA" [(ngModel)]="campaign.status"  ></p-toggleButton>
         </div>

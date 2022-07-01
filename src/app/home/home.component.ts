@@ -167,7 +167,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 
                 Swal.fire(
                   'ERROR!',
-                  'Ocurrio un error de red o ya finalizo el periodo de votacion!',
+                  'Ocurrio un error de red o ya finalizo el periodo de votacion! Intenta mas tarde',
                   'error'
                 )
                 this.onRequest = false
@@ -176,7 +176,7 @@ export class HomeComponent implements OnInit, OnDestroy {
           } else {
             Swal.fire(
               'ERROR!',
-              'Ocurrio un error de red o ya finalizo el periodo de votacion!',
+              'Ocurrio un error de red o ya finalizo el periodo de votacion! Intenta mas tarde',
               'error'
             )
           }
@@ -214,7 +214,7 @@ export class HomeComponent implements OnInit, OnDestroy {
         })
       },
       err => {
-        this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Ocurrio un error al conectarse al servidor' });
+        this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Ocurrio un error al conectarse al servidor, Intenta mas tarde' });
       }
     )
   }
