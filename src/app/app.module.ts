@@ -41,6 +41,8 @@ import {TabViewModule} from 'primeng/tabview';
 import {ToggleButtonModule} from 'primeng/togglebutton';
 import {ProgressBarModule} from 'primeng/progressbar';
 import { StatsComponent } from './stats/stats.component';
+import {IvyCarouselModule} from 'angular-responsive-carousel';
+
 const firebaseUiAuthConfig: ExtendedFirebaseUIAuthConfig= {
   signInFlow: 'popup',
 
@@ -72,6 +74,7 @@ const firebaseUiAuthConfig: ExtendedFirebaseUIAuthConfig= {
     HeaderComponent,
     BannerComponent,
     StatsComponent,
+    
   ],
   imports: [ 
     BrowserAnimationsModule,
@@ -87,6 +90,7 @@ const firebaseUiAuthConfig: ExtendedFirebaseUIAuthConfig= {
       DialogModule,
       FileUploadModule,
       ToolbarModule,
+      IvyCarouselModule,
       CalendarModule,
       ChartModule,
       ProgressBarModule,

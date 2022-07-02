@@ -1,9 +1,8 @@
 export class Banner {
     constructor(
         public id?:any,
-        public  image?: String,
-        public description?:String,
-       
+        public  image?: String,     
+       public main?:boolean
     ) {
 
     }

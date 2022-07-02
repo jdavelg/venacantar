@@ -12,9 +12,9 @@ import { UserService } from '../services/user.service';
 })
 export class BannerComponent implements OnInit {
   selectedFile: File | any;
-  banner:Banner
-  status:any
-  banners:any
+  banner: Banner
+  status: any
+  banners: any
 
   clonedBanners: { [s: string]: Banner; } = {};
 
@@ -27,16 +27,16 @@ export class BannerComponent implements OnInit {
   submitted: boolean;
 
   statuses: any[];
-  constructor(    
-    private _bannerService:UserService,
+  constructor(
+    private _bannerService: UserService,
     private messageService: MessageService,
-     private confirmationService: ConfirmationService
-    ) {
-  
-   }
+    private confirmationService: ConfirmationService
+  ) {
+
+  }
 
   ngOnInit(): void {
-  this.getBanners()
+    this.getBanners()
   }
 
   onSubmit(banner?: any) {
@@ -57,18 +57,20 @@ export class BannerComponent implements OnInit {
           let pathtoadd = firstPath.split("https://clips-vod-tcs.s3.amazonaws.com/")
           let definitelypath = global.toReplace + pathtoadd[1]
           console.log(definitelypath);
-
+          if (this.banner.main == null || this.banner.main == undefined) {
+            this.banner.main = false
+          }
           this.banner.image = definitelypath
           /* start banner */
           this._bannerService.saveBanner(this.banner).subscribe(
             response => {
               if (response) {
                 console.log(response);
-                
+
                 this.status = 'success'
-               
+
                 this.getBanners()
-               this.hideDialog()
+                this.hideDialog()
                 Swal.fire(
                   'muy bien!',
                   'El banner se ha guardado!',
@@ -86,6 +88,7 @@ export class BannerComponent implements OnInit {
                 'Hubo un error al intentar guardar el banner!',
                 'error'
               )
+              this.hideDialog()
 
             }
           )
@@ -99,6 +102,7 @@ export class BannerComponent implements OnInit {
           'El registro no se ha guardado.',
           'error'
         )
+        this.hideDialog()
       }
     )
 
@@ -112,12 +116,12 @@ export class BannerComponent implements OnInit {
     this._bannerService.getBanners().subscribe(
       response => {
 
-      
-          this.banners = response
-          console.log(this.banners);
-          
-         
-     
+
+        this.banners = response
+        console.log(this.banners);
+
+
+
       },
       error => {
         console.log(error);
@@ -132,8 +136,8 @@ export class BannerComponent implements OnInit {
   }
 
 
-   /* new code  */
-   openNew() {
+  /* new code  */
+  openNew() {
     this.banner = {}
     this.submitted = false;
     this.bannerDialog = true;
@@ -184,7 +188,7 @@ export class BannerComponent implements OnInit {
           },
           err => {
             console.log(err);
-            
+
             this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Error al borrar registro ', life: 3000 });
           }
         )
@@ -202,21 +206,25 @@ export class BannerComponent implements OnInit {
 
   saveBanner() {
     this.submitted = true;
-  /*   console.log('campania', this.banner); */
-    
-     if (this.banner.id !== undefined && this.banner.id != null) {
-   
+    /*   console.log('campania', this.banner); */
+
+    if (this.banner.id !== undefined && this.banner.id != null) {
+
       this._bannerService.updateBanner(this.banner).subscribe(
         resp => {
-          this.messageService.add({ severity: 'success', summary: 'Exito', detail: 'Registro actualizado', life: 3000 });
+          this.messageService.add({ severity: 'success', summary: 'Exito', detail: 'Registro actualizado', life: 2000 });
           this.hideDialog()
           this.getBanners()
         },
         err => {
-          this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Error en el servidor al guardar el registro', life: 3000 });
+          this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Error en el servidor al guardar el registro', life: 2000 });
+          this.hideDialog()
         }
       )
     } else {
+      if (this.banner.main == undefined || this.banner.main == null) {
+        this.banner.main = false
+      }
       this._bannerService.saveBanner(this.banner).subscribe(
         resp => {
           this.messageService.add({ severity: 'success', summary: 'Exito', detail: 'Registro guardado', life: 3000 });
@@ -225,9 +233,10 @@ export class BannerComponent implements OnInit {
         },
         err => {
           this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Error en el servidor al guardar el registro', life: 3000 });
+          this.hideDialog()
         }
       )
-    } 
+    }
 
     /*    if (this.type.name) {
            if (this.product.id) {

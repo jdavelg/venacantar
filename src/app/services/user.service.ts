@@ -114,7 +114,7 @@ getCampaignData():Observable<any>{
   }
 
 getPermissions(): Observable<any>{
-  return this._http.get(global.url + 'administrators')
+  return this._http.get(global.url + 'admins')
 }
 
   saveCampaign(form: any): Observable<any> {

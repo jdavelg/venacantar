@@ -3,25 +3,29 @@
 <div class="card">
     <p-toolbar styleClass="mb-4">
         <ng-template pTemplate="left">
-            <button pButton pRipple label="New" icon="pi pi-plus" class="p-button-success mr-2" (click)="openNew()"></button>
-            <button pButton pRipple label="Delete" icon="pi pi-trash" class="p-button-danger" (click)="deleteSelectedCampaigns()" [disabled]="!selectedCampaigns || !selectedCampaigns.length"></button>
+            <button pButton pRipple label="New" icon="pi pi-plus" class="p-button-success mr-2"
+                (click)="openNew()"></button>
+            <button pButton pRipple label="Delete" icon="pi pi-trash" class="p-button-danger"
+                (click)="deleteSelectedCampaigns()"
+                [disabled]="!selectedCampaigns || !selectedCampaigns.length"></button>
         </ng-template>
 
         <ng-template pTemplate="right">
-        <!--     <p-fileUpload mode="basic" accept="image/*" [maxFileSize]="1000000" label="Import" chooseLabel="Import" class="mr-2 inline-block"></p-fileUpload>
+            <!--     <p-fileUpload mode="basic" accept="image/*" [maxFileSize]="1000000" label="Import" chooseLabel="Import" class="mr-2 inline-block"></p-fileUpload>
             <button pButton pRipple label="Export" icon="pi pi-upload" class="p-button-help"></button> -->
         </ng-template>
     </p-toolbar>
 
-    <p-table #dt [value]="campaigns" [rows]="10" [paginator]="true" [globalFilterFields]="['name']" responsiveLayout="scroll"
-        [(selection)]="selectedCampaigns" [rowHover]="true" dataKey="id"
+    <p-table #dt [value]="campaigns" [rows]="10" [paginator]="true" [globalFilterFields]="['name']"
+        responsiveLayout="scroll" [(selection)]="selectedCampaigns" [rowHover]="true" dataKey="id"
         currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [showCurrentPageReport]="true">
         <ng-template pTemplate="caption">
             <div class="flex align-items-center justify-content-between">
                 <h5 class="m-0">Administrar Campañas</h5>
                 <span class="p-input-icon-left">
                     <i class="pi pi-search"></i>
-                    <input pInputText type="text" (input)="dt.filterGlobal($event.target.value , 'contains')" placeholder="Search..." />
+                    <input pInputText type="text" (input)="dt.filterGlobal($event.target.value , 'contains')"
+                        placeholder="Search..." />
                 </span>
             </div>
         </ng-template>
@@ -30,12 +34,15 @@
                 <th style="width: 3rem">
                     <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
                 </th>
-                <th pSortableColumn="name">Nombre <p-sortIcon field="name"></p-sortIcon></th>
-               <!--  <th pSortableColumn="startDate">Fecha Inicio <p-sortIcon field="startDate"></p-sortIcon></th> -->
-               <th pSortableColumn="status">Status <p-sortIcon field="status"></p-sortIcon></th>
-                <th pSortableColumn="endDate">Fecha Fin <p-sortIcon field="endDate"></p-sortIcon></th>
-                <th >Cantantes </th>
-               <!--  <th pSortableColumn="category">Category <p-sortIcon field="category"></p-sortIcon></th>
+                <th pSortableColumn="name">Nombre <p-sortIcon field="name"></p-sortIcon>
+                </th>
+                <!--  <th pSortableColumn="startDate">Fecha Inicio <p-sortIcon field="startDate"></p-sortIcon></th> -->
+                <th pSortableColumn="status">Status <p-sortIcon field="status"></p-sortIcon>
+                </th>
+                <th pSortableColumn="endDate">Fecha Fin <p-sortIcon field="endDate"></p-sortIcon>
+                </th>
+                <th>Cantantes </th>
+                <!--  <th pSortableColumn="category">Category <p-sortIcon field="category"></p-sortIcon></th>
                 <th pSortableColumn="rating">Reviews <p-sortIcon field="rating"></p-sortIcon></th>
                 <th pSortableColumn="inventoryStatus">Status <p-sortIcon field="inventoryStatus"></p-sortIcon></th> -->
                 <th></th>
@@ -47,20 +54,26 @@
                     <p-tableCheckbox [value]="campaign"></p-tableCheckbox>
                 </td>
                 <td>{{campaign.name}}</td>
-              <!--   <td>{{campaign.startDate}}</td> -->
-              <td> <p-toggleButton (onChange)="handleChange($event, campaign)" onLabel="ACTIVADA" offLabel="DESACTIVADA" [(ngModel)]="campaign.status"  ></p-toggleButton></td>
+                <!--   <td>{{campaign.startDate}}</td> -->
+                <td>
+                    <p-toggleButton (onChange)="handleChange($event, campaign)" onLabel="ACTIVADA"
+                        offLabel="DESACTIVADA" [(ngModel)]="campaign.status"></p-toggleButton>
+                </td>
                 <td>{{campaign.endDate }}</td>
-                <td><ng-template ngFor let-cantante [ngForOf]="campaign.singers" >
-                    <div>{{cantante.name}}</div>
-                  </ng-template>
+                <td>
+                    <ng-template ngFor let-cantante [ngForOf]="campaign.singers">
+                        <div>{{cantante.name}}</div>
+                    </ng-template>
                 </td>
                 <!-- <td>{{singer.category}}</td>
                 <td><p-rating [ngModel]="singer.rating" readonly="true" cancel="false"></p-rating></td>
                 <td><span [class]="'singer-badge status-' + (singer.inventoryStatus ? singer.inventoryStatus.toLowerCase() : '')">{{singer.inventoryStatus}}</span></td> -->
                 <td>
                     <!-- <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2" (click)="editCampaign(campaign)"></button> -->
-                    <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-danger" (click)="deleteCampaign(campaign)"></button>
-                    <button pButton pRipple icon="pi pi-chart-bar" class="p-button-rounded p-button-warning"  label="Estadisticas" (click)="openStats(campaign.id)"></button>
+                    <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-danger"
+                        (click)="deleteCampaign(campaign)"></button>
+                    <button pButton pRipple icon="pi pi-chart-bar" class="p-button-rounded p-button-warning"
+                        label="Estadisticas" (click)="openStats(campaign.id)"></button>
                 </td>
             </tr>
         </ng-template>
@@ -72,28 +85,33 @@
     </p-table>
 </div>
 
-<p-dialog [(visible)]="campaignDialog" [style]="{width: '450px', minHeight:'95%'}" header="singer Details" [modal]="true" styleClass="p-fluid">
+<p-dialog [(visible)]="campaignDialog" [style]="{width: '470px', minHeight:'95%'}" header="singer Details"
+    [modal]="true" styleClass="p-fluid">
     <ng-template pTemplate="content">
+        <div class="field mt-2">
+            <label for="endDate">Fecha de fin</label>
+
+            <p-calendar [(ngModel)]="campaign.endDate" [showTime]="true" [showSeconds]="true" [inline]="true"
+                dateFormat="dd-mm-yy" inputId="dateformat"></p-calendar>
+
+        </div>
         <div class="field mt-3">
             <label for="singers">Cantantes</label>
-            <p-multiSelect [options]="singers" [(ngModel)]="campaign.singers" optionLabel="name" display="chip" ></p-multiSelect>
+            <p-multiSelect [options]="singers" [(ngModel)]="campaign.singers" optionLabel="name" display="chip"
+                required="true"></p-multiSelect>
         </div>
-        <div class="field mt-2" >
-            <label for="name">Name</label>
+        <div class="field mt-2">
+            <label for="name">Nombre de campaña</label>
             <input type="text" pInputText id="name" [(ngModel)]="campaign.name" required autofocus />
             <small class="p-error" *ngIf="submitted && !campaign.name">Nombre es requerido.</small>
         </div>
 
         <div class="field" style="display: none;">
-       
-            <p-toggleButton (onChange)="handleChange($event, campaign)" onLabel="ACTIVADA" offLabel="DESACTIVADA" [(ngModel)]="campaign.status"  ></p-toggleButton>
+
+            <p-toggleButton (onChange)="handleChange($event, campaign)" onLabel="ACTIVADA" offLabel="DESACTIVADA"
+                [(ngModel)]="campaign.status"></p-toggleButton>
         </div>
-        <div class="field mt-2">
-            <label for="endDate">Fecha de fin</label>
-                           
-                <p-calendar [(ngModel)]="campaign.endDate" [showTime]="true" [inline]="true" dateFormat="dd-mm-yy" inputId="dateformat"></p-calendar>
-            
-        </div>
+
         <!-- <div class="field">
             <label for="singers">Cantantes</label>
             <p-multiSelect [options]="singers" [(ngModel)]="campaign.singers" display="chip"></p-multiSelect>
@@ -101,19 +119,21 @@
     </ng-template>
 
     <ng-template pTemplate="footer">
-        <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button>
-        <button pButton pRipple label="Save" icon="pi pi-check" class="p-button-text" (click)="saveCampaign()"></button>
+        <button pButton pRipple label="Cancelar" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button>
+        <button pButton pRipple label="Guardar" icon="pi pi-check" [disabled]="campaign.name==undefined ||campaign.endDate==undefined ? true : false " class="p-button-text" (click)="saveCampaign()"></button>
     </ng-template>
 </p-dialog>
 
-<p-dialog [(visible)]="statsDialog" [style]="{width: '80%', minHeight:'95%'}" header="Detalle de campaña" [modal]="true" styleClass="p-fluid">
+<p-dialog [(visible)]="statsDialog" [style]="{width: '80%', minHeight:'95%'}" header="Detalle de campaña" [modal]="true"
+    styleClass="p-fluid">
     <ng-template pTemplate="content">
-  <app-stats [campaignId]="campaignId"></app-stats>
+        <app-stats [campaignId]="campaignId"></app-stats>
     </ng-template>
 
     <ng-template pTemplate="footer">
-        <button pButton pRipple label="Cerrar" icon="pi pi-times" class="p-button-rounded p-button-danger" (click)="hideStatsDialog()"></button>
+        <button pButton pRipple label="Cerrar" icon="pi pi-times" class="p-button-rounded p-button-danger"
+            (click)="hideStatsDialog()"></button>
         <!-- <button pButton pRipple label="Save" icon="pi pi-check" class="p-button-text" (click)="saveCampaign()"></button> -->
-    </ng-template>   
+    </ng-template>
 </p-dialog>
 <p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog>

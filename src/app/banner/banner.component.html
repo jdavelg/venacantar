@@ -30,7 +30,7 @@
                 </th>
                 <th pSortableColumn="id">Id <p-sortIcon field="id"></p-sortIcon></th>
                 <th pSortableColumn="image">Image </th>
-                <th pSortableColumn="description">Description <p-sortIcon field="description"></p-sortIcon></th>
+                <th pSortableColumn="description">Banner Principal <p-sortIcon field="description"></p-sortIcon></th>
              
      
                 <th></th>
@@ -43,11 +43,15 @@
                 </td>
                 <td>{{banner.id}}</td>
                 <td><img src="{{banner.image}}" alt="" height="50" width="75"></td>
-                <td>{{banner.description }}</td>
+                <td>
+                    <span *ngIf="banner.main">Sí</span> 
+                
+                    <span *ngIf="!banner.main">No</span>
+                </td>
                
                  <td>
-                    <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2" (click)="editCampaign(banner)"></button>
-                    <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="deleteCampaign(banner)"></button>
+                    <!-- <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2" (click)="editCampaign(banner)"></button> -->
+                    <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="deleteBanner(banner)"></button>
                 </td>
             </tr>
         </ng-template>
@@ -62,10 +66,12 @@
 <p-dialog [(visible)]="bannerDialog" [style]="{width: '450px', minHeight:'95%'}" header="banner Details" [modal]="true" styleClass="p-fluid">
     <ng-template pTemplate="content">
      
-        <div class="field">
-            <label for="description">Descripcion</label>
-            <input type="text" pInputText id="description" [(ngModel)]="banner.description" required autofocus />
-            <small class="p-error" *ngIf="submitted && !banner.name">Nombre es requerido.</small>
+        <div class="field-checkbox">
+            
+                <p-checkbox [(ngModel)]="banner.main" [binary]="true" ></p-checkbox>
+         <label for="main">Banner Principal</label>
+          
+            
         </div>
         <div class="field">
             <label for="image">Imagen</label>

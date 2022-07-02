@@ -31,9 +31,9 @@ export class HomeComponent implements OnInit, OnDestroy {
   campaignDialog: boolean;
   public isValidEmail: boolean = false
   isAdministrator: boolean = false
-
+   isLoading:boolean=false
   selectedCampaigns: Campaign[];
-
+banners:any[]
   submitted: boolean;
 
   statuses: any[];
@@ -49,6 +49,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.userSub = this._authService.user.subscribe(user => {
       this.isAuthenticated = !!user
       if (user != undefined && user != null) {
+        this.isAdmin()
         this.user = user
         if (user.email && user.email.startsWith('+')) {
           this.isValidEmail = true
@@ -65,6 +66,8 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   }
   ngOnInit(): void {
+    
+    this.getBanners()
     this.getCampaigns()
     this.getSingers()
   }
@@ -89,6 +92,24 @@ export class HomeComponent implements OnInit, OnDestroy {
             }
           })
         }
+      }
+    )
+  }
+
+  getBanners() {
+    this._campaignService.getBanners().subscribe(
+      response => {
+
+
+        this.banners = response
+      
+
+
+
+      },
+      error => {
+        this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Ocurrio un error al conectarse al servidor' });
+
       }
     )
   }
