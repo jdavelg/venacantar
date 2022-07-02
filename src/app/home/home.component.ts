@@ -214,6 +214,7 @@ banners:any[]
           'Debes verificar tu email para poder votar, revisa en la bandeja de entrada o la carpeta spam el correo que te hemos enviado, luego vuelve a iniciar sesion',
           'info'
         )
+        this._authService.logout()
       }
 
 
