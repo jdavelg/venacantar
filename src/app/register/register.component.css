@@ -3637,7 +3637,7 @@ a {
 
 @media (min-width: 1000px) {
     .login_form_inner {
-        padding-top: 115px;
+        padding-top: 40px;
         padding-bottom: 0
     }
 }
@@ -3646,7 +3646,7 @@ a {
     color: #222;
     text-transform: uppercase;
     font-size: 18px;
-    margin-bottom: 75px
+    margin-bottom: 30px
 }
 
 .login_form_inner .login_form {
@@ -3655,11 +3655,11 @@ a {
 }
 
 .login_form_inner.reg_form {
-    padding-top: 60px
+    padding-top: 30px
 }
 
 .login_form_inner.reg_form h3 {
-    margin-bottom: 70px
+    margin-bottom: 30px
 }
 
 .login_form .form-group {
@@ -3727,7 +3727,7 @@ a {
 }
 
 .register_form_inner {
-    padding-top: 70px
+    padding-top: 30px
 }
 
 .instagram_area {

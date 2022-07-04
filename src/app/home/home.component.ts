@@ -55,6 +55,17 @@ banners:any[]
           this.isValidEmail = true
         } else {
           this.isValidEmail = this.verifyEmailValidation(this.user._token);
+
+          /* auto logout si no esta verificado el email start */
+         if (this.isValidEmail == false) {
+          Swal.fire(
+            'AVISO!',
+            'Debes verificar tu email para poder votar, revisa en la bandeja de entrada o la carpeta spam el correo que te hemos enviado, luego vuelve a iniciar sesion',
+            'info'
+          )
+          this._authService.logout()
+             /* auto logout si no esta verificado el email fin */
+         } 
         }
 
       }

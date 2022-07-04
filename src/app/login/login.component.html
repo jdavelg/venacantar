@@ -37,7 +37,7 @@
                     <form class="row login_form" #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm)" id="contactForm">
                         <div class="col-md-12 form-group">
                             <input type="text" class="form-control" id="name" name="name"
-                                placeholder="Nombre de Usuario" onfocus="this.placeholder = ''"
+                                placeholder="Correo electrónico" inputmode="email" onfocus="this.placeholder = ''"
                                 onblur="this.placeholder = 'Correo electrónico'" #email="ngModel"
                                 [(ngModel)]="user.email" required>
                         </div>
@@ -53,7 +53,7 @@
                             </div>
                         </div> -->
                         <div class="col-md-12 form-group">
-                            <button type="submit" value="submit" class="btn btn-primary button-login w-100">Iniciar
+                            <button type="submit" value="submit" class="btn btn-primary button-login w-100" [disabled]="loginForm.invalid || !user.password">Iniciar
                                 Sesión</button>
                             <!-- <a href="#">Olvidaste tu contraseña?</a> -->
                         </div>
