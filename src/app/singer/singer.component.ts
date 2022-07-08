@@ -121,7 +121,7 @@ status:any
                 'Hubo un error al intentar guardar el participante!',
                 'error'
               )
-
+              this.hideDialog()
             }
           )
 
@@ -134,6 +134,7 @@ status:any
           'El registro no se ha guardado.',
           'error'
         )
+        this.hideDialog()
       }
     )
 

@@ -10,12 +10,12 @@ import { MessageService } from 'primeng/api';
   selector: 'app-campaign',
   templateUrl: './campaign.component.html',
   styleUrls: ['./campaign.component.css'],
-  providers: [MessageService,ConfirmationService]
+  providers: [MessageService, ConfirmationService]
 })
 export class CampaignComponent implements OnInit, OnDestroy {
   checked: boolean;
   singers: Singer[]
-  campaigns:Campaign[]
+  campaigns: Campaign[]
   campaign: Campaign
   isAuthenticated = false
   private userSub: Subscription
@@ -25,8 +25,8 @@ export class CampaignComponent implements OnInit, OnDestroy {
   clonedCampaigns: { [s: string]: Campaign; } = {};
 
   campaignDialog: boolean;
-statsDialog:boolean=false
-campaignId:any
+  statsDialog: boolean = false
+  campaignId: any
 
   selectedCampaigns: Campaign[];
 
@@ -39,7 +39,7 @@ campaignId:any
     private _campaignService: UserService,
     private messageService: MessageService, private confirmationService: ConfirmationService
   ) {
-    
+
     this.userSub = this._authService.user.subscribe(user => {
       this.isAuthenticated = !!user
 
@@ -55,8 +55,8 @@ campaignId:any
   }
 
   ngOnInit(): void {
-this.getCampaigns()
-this.getSingers()
+    this.getCampaigns()
+    this.getSingers()
   }
   onLogout() {
 
@@ -72,21 +72,21 @@ this.getSingers()
 
 
   }
-  handleChange(e:any, campaign:any) {
+  handleChange(e: any, campaign: any) {
     var isChecked = e.checked;
-    campaign.status=e.checked
+    campaign.status = e.checked
     this._campaignService.updateCampaign(campaign).subscribe(
-      res=>{
-        this.messageService.add({ severity: 'success', summary: 'Exito', detail: 'Registro actualizado satisfactoriamenete', life: 3000 }); 
+      res => {
+        this.messageService.add({ severity: 'success', summary: 'Exito', detail: 'Registro actualizado satisfactoriamenete', life: 3000 });
         this.getCampaigns()
       },
-      error=>{
+      error => {
         this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Ocurrio un error en la peticion' });
       }
     )
-     
-   
-}
+
+
+  }
   getSingers() {
     this._campaignService.getSingers().subscribe(
       resp => {
@@ -99,22 +99,22 @@ this.getSingers()
     )
   }
 
-getCampaigns(){
-  this._campaignService.getCampaings().subscribe(
-    resp => {
-      console.log('campaigns ', resp);
-      
-      this.campaigns = resp
-this.campaigns.map(campana=>{
-/*   campana.startDate=new Date(campana.startDate); */
-  campana.endDate=new Date(campana.endDate)
-})
-    },
-    err => {
-      this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Ocurrio un error al conectarse al servidor' });
-    }
-  )
-}
+  getCampaigns() {
+    this._campaignService.getCampaings().subscribe(
+      resp => {
+        console.log('campaigns ', resp);
+
+        this.campaigns = resp
+        this.campaigns.map(campana => {
+          /*   campana.startDate=new Date(campana.startDate); */
+          campana.endDate = new Date(campana.endDate)
+        })
+      },
+      err => {
+        this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Ocurrio un error al conectarse al servidor' });
+      }
+    )
+  }
 
   /* new code  */
   openNew() {
@@ -168,7 +168,7 @@ this.campaigns.map(campana=>{
           },
           err => {
             console.log(err);
-            
+
             this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Error al borrar registro ', life: 3000 });
           }
         )
@@ -178,14 +178,14 @@ this.campaigns.map(campana=>{
     });
   }
 
-  openStats(id:any){
-this.campaignId=id
-    this.statsDialog=true
+  openStats(id: any) {
+    this.campaignId = id
+    this.statsDialog = true
   }
 
-  hideStatsDialog(){
-    this.campaignId=null
-    this.statsDialog=false
+  hideStatsDialog() {
+    this.campaignId = null
+    this.statsDialog = false
   }
   hideDialog() {
     this.campaign = {}
@@ -195,11 +195,11 @@ this.campaignId=id
 
   saveCampaign() {
     this.submitted = true;
-  /*   console.log('campania', this.campaign); */
+    /*   console.log('campania', this.campaign); */
     console.log(this.campaign);
-    
-     if (this.campaign.id !== undefined && this.campaign.id != null) {
-   
+
+    if (this.campaign.id !== undefined && this.campaign.id != null) {
+
       this._campaignService.updateCampaign(this.campaign).subscribe(
         resp => {
           this.messageService.add({ severity: 'success', summary: 'Exito', detail: 'Registro actualizado', life: 3000 });
@@ -213,15 +213,15 @@ this.campaignId=id
     } else {
       this._campaignService.saveCampaign(this.campaign).subscribe(
         resp => {
-          this.messageService.add({ severity: 'success', summary: 'Exito', detail: 'Registro guardado', life: 3000 });         
+          this.messageService.add({ severity: 'success', summary: 'Exito', detail: 'Registro guardado', life: 3000 });
           this.hideDialog()
-           this.getCampaigns()
+          this.getCampaigns()
         },
         err => {
           this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Error en el servidor al guardar el registro', life: 3000 });
         }
       )
-    } 
+    }
 
     /*    if (this.type.name) {
            if (this.product.id) {

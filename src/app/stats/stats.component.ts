@@ -16,8 +16,12 @@ import { global } from '../models/global';
 })
 export class StatsComponent implements OnInit {
   @Input() campaignId: any;
-
-  stats: any= {
+  tableStats:any
+stats={
+  labels:[],
+  datasets:[{data:[], backgroundColor:[]}]
+}
+  newstats: any= {
       labels: ['A','B','C'],
       datasets: [
           {
@@ -42,19 +46,34 @@ export class StatsComponent implements OnInit {
     private _campaignService: UserService,
     private messageService: MessageService, private confirmationService: ConfirmationService
   ) {
-
+ 
   }
 
   ngOnInit(): void {
+   this.getCampaignStats()
+   /*  console.log(this.campaignId); */
 
-    console.log(this.campaignId);
-    this.getCampaignStats()
   }
+  
 
   getCampaignStats() {
-    this._campaignService.getCampaignData().subscribe(
+    this._campaignService.getCampaignData(this.campaignId).subscribe(
       resp => {
         /* this.stats = resp */
+    /*  console.log(resp); */
+        if (resp.length>=1) {
+          this.tableStats=resp
+          resp.forEach(cantante => {
+            let color= Math.floor(Math.random()*16777215).toString(16);
+            this.stats.labels.push(cantante.name)
+            this.stats.datasets[0].data.push(cantante.votes)
+            this.stats.datasets[0].backgroundColor.push('#'+color)
+          });
+       /*    console.log('stats',
+            this.stats
+          ); */
+          
+        }
       },
       error => {
         console.log(error);

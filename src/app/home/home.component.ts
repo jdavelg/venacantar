@@ -9,6 +9,7 @@ import { MessageService } from 'primeng/api';
 import Swal from 'sweetalert2';
 import jwt_decode from 'jwt-decode';
 import { User } from '../models/user';
+import { Banner } from '../models/banner';
 
 @Component({
   selector: 'app-home',
@@ -31,11 +32,12 @@ export class HomeComponent implements OnInit, OnDestroy {
   campaignDialog: boolean;
   public isValidEmail: boolean = false
   isAdministrator: boolean = false
-   isLoading:boolean=false
+  isLoading: boolean = false
   selectedCampaigns: Campaign[];
-banners:any[]
+  banners: any[]
   submitted: boolean;
-
+mainBanners:Array<Banner>=[]
+noMainBanners:Array<Banner>=[]
   statuses: any[];
 
   onRequest: boolean = false
@@ -57,15 +59,36 @@ banners:any[]
           this.isValidEmail = this.verifyEmailValidation(this.user._token);
 
           /* auto logout si no esta verificado el email start */
-         if (this.isValidEmail == false) {
-          Swal.fire(
-            'AVISO!',
-            'Debes verificar tu email para poder votar, revisa en la bandeja de entrada o la carpeta spam el correo que te hemos enviado, luego vuelve a iniciar sesion',
-            'info'
-          )
-          this._authService.logout()
-             /* auto logout si no esta verificado el email fin */
-         } 
+                if (this.isValidEmail == false ) {
+                console.log(this.isAdministrator);
+    
+                Swal.fire({
+                  title: 'Aviso',
+                  text: "Debes verificar tu email para poder votar, revisa en la bandeja de entrada o la carpeta spam el correo que te hemos enviado, luego vuelve a iniciar sesion",
+                  icon: 'info',
+                  backdrop: `
+                  rgba(0, 0, 0, 0.5)               
+                  left top
+                  no-repeat
+                `,
+                  showCancelButton: true,
+                  cancelButtonText:"Salir",
+                  confirmButtonColor: '#3085d6',
+                  cancelButtonColor: '#d33',
+                  confirmButtonText: 'Reenviar correo de verificación'
+                }).then((result) => {
+                  if (result.isConfirmed) {
+                    
+             this.resendVerificationEmail(this.user._token)
+                   
+                  }else{
+                        this._authService.logout()  
+                  }
+                })
+               
+                  
+               }  
+          /* auto logout si no esta verificado el email fin */
         }
 
       }
@@ -77,7 +100,7 @@ banners:any[]
 
   }
   ngOnInit(): void {
-    
+
     this.getBanners()
     this.getCampaigns()
     this.getSingers()
@@ -93,13 +116,38 @@ banners:any[]
     this.userSub.unsubscribe()
 
   }
+  resendVerificationEmail(token: any) {
+    this._authService.sendEmailVerification(token).subscribe(
+
+      response => {
+
+        Swal.fire({
+          icon: 'success',
+          title: 'Muy bien',
+          text: 'Hemos reenviado el email de confirmacion, despues de verificarlo inicia sesión'
+
+        })
+
+        this._authService.logout()
+      },
+      error => {
+        Swal.fire({
+          icon: 'error',
+          title: 'Lo sentimos',
+          text: 'Ha ocurrido un error de red, espera para volver a solicitar el correo de verificacion'
+
+        })
+        this._authService.logout()
+      }
+    )
+  }
   isAdmin() {
     this._campaignService.getPermissions().subscribe(
       resp => {
         if (resp.length >= 1) {
           resp.map(element => {
             if (element.email == this.user.email) {
-              this.isAdministrator=true
+              this.isAdministrator = true
             }
           })
         }
@@ -113,8 +161,20 @@ banners:any[]
 
 
         this.banners = response
-      
 
+if (this.banners.length>=1) {
+  
+  this.banners.map(banner=>{
+    if (banner!=undefined) {
+      if (banner.main==true && banner) {
+      this.mainBanners.push(banner)
+    }else{
+      this.noMainBanners.push(banner)
+    }
+    }
+    
+  })
+}
 
 
       },
@@ -195,20 +255,27 @@ banners:any[]
                 this.onRequest = false
               },
               err => {
-                console.log(err);
-
-                Swal.fire(
-                  'ERROR!',
-                  'Ocurrio un error de red o ya finalizo el periodo de votacion! Intenta mas tarde',
-                  'error'
-                )
+                console.log(err.error);
+                if (err.error && err.error.status && err.error.status == 1001) {
+                  Swal.fire(
+                    'ERROR!',
+                    'Ya votaste. Solamente puedes votar una vez por semana',
+                    'error'
+                  )
+                } else {
+                  Swal.fire(
+                    'ERROR!',
+                    'Ocurrio un error de red! Por favor intenta mas tarde',
+                    'error'
+                  )
+                }
                 this.onRequest = false
               }
             )
           } else {
             Swal.fire(
               'ERROR!',
-              'Ocurrio un error de red o ya finalizo el periodo de votacion! Intenta mas tarde',
+              'Ocurrio un error desconocido! Intenta mas tarde',
               'error'
             )
           }

@@ -22,3 +22,9 @@ html, body {
   height: 100%;
   margin: 0px;
 }
+   .carousel-cells .carousel-cell{
+z-index: 100 !important;
+   }
+   .carousel{
+    z-index: 100 !important;
+   }

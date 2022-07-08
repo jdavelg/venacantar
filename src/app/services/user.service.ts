@@ -75,10 +75,10 @@ export class UserService {
 
   }
 
-getCampaignData():Observable<any>{
+getCampaignData(campaignId:any):Observable<any>{
 
 
-  return this._http.get(global.url + 'campaigns'/* , { headers: headers } */)
+  return this._http.get(global.url + 'votes/'+campaignId/* , { headers: headers } */)
 }
   getBanners(): Observable<any> {
     return this._http.get(global.url + 'banners')
