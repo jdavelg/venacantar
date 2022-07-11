@@ -18,14 +18,14 @@
 
     <p-table #dt [value]="campaigns" [rows]="10" [paginator]="true" [globalFilterFields]="['name']"
         responsiveLayout="scroll" [(selection)]="selectedCampaigns" [rowHover]="true" dataKey="id"
-        currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [showCurrentPageReport]="true">
+        currentPageReportTemplate="Showing {last} to {first} of {totalRecords} entries" [showCurrentPageReport]="true">
         <ng-template pTemplate="caption">
             <div class="flex align-items-center justify-content-between">
                 <h5 class="m-0">Administrar Campañas</h5>
                 <span class="p-input-icon-left">
                     <i class="pi pi-search"></i>
                     <input pInputText type="text" (input)="dt.filterGlobal($event.target.value , 'contains')"
-                        placeholder="Search..." />
+                        placeholder="Buscar..." />
                 </span>
             </div>
         </ng-template>
@@ -85,11 +85,11 @@
     </p-table>
 </div>
 
-<p-dialog [(visible)]="campaignDialog" [style]="{width: '470px', minHeight:'95%'}" header="singer Details"
+<p-dialog [(visible)]="campaignDialog" [style]="{width: '470px', minHeight:'95%'}" header="Campaña Detalles"
     [modal]="true" styleClass="p-fluid">
     <ng-template pTemplate="content">
         <div class="field mt-2">
-            <label for="endDate">Fecha de fin</label>
+            <label for="endDate">Fecha de fin de campaña</label>
 
             <p-calendar [(ngModel)]="campaign.endDate" [showTime]="true" [showSeconds]="true" [inline]="true"
                 dateFormat="dd-mm-yy" inputId="dateformat"></p-calendar>

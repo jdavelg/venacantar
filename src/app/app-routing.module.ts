@@ -14,6 +14,7 @@ const routes: Routes = [
   { path: 'registro', component: RegisterComponent },
   { path: 'cantantes',  component: SingerComponent },
   { path: 'votacion',  component: CampaignComponent },
+  { path: '**', redirectTo: '' }
 ];
 
 @NgModule({

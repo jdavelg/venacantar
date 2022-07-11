@@ -37,46 +37,17 @@
         <p-toast></p-toast>
         <div class="card" style=" min-width: 100%; background-color: transparent;">
 
-            <!--  <div class="flex flex-column md:flex-row card-container align-items-center justify-content-center">
-            <div class="p-1">
-
-                <div class="grid">
-                    <ng-template ngFor let-cantante [ngForOf]="currentCampaign.singers">
-                        <div class="col-5 col-offset-0 sm:col-5 md:col-6 lg:col-5 xl:col-5 mb-2">
-                            
-
-                            
-                            <div class="shadow-2 border-round p-4" style="min-height: 100% !important; background-color: transparent !important;">
-                                <div class="flex align-items-center justify-content-center">
-                                    <div class=" text-xl text-900 font-medium mb-5"  style="color: white !important; min-height: 100px;">{{cantante.name}}</div>
-                                </div>
-
-                                <div class="min-w-full " style="min-height: 250px !important;">
-                                    <img src="../../assets/img/{{cantante.img}}" class="img-fluid" alt="..." style="max-height: 500px; border-radius: 25%;">
-                                </div>
-
-                                <div class="flex  justify-content-center align-items-center pt-3">
-                                    <a type="button" *ngIf="isAuthenticated"
-                                        class="btn btn-warning" (click)="onAddVote(cantante)">Votar
-                                    </a>
-                                            <a type="button" class="btn btn-warning" *ngIf="!isAuthenticated" [routerLink]="['/login']">Inicia sesion para votar</a>
-
-                                </div>
-                            </div>
-                        </div>
-                   
-                    </ng-template>
-
-                </div>
-            </div>
-        </div> -->
+            
         <ng-container *ngIf=" currentCampaign && currentCampaign.status && currentCampaign.singers; ">
             <div  *ngIf="banners!=undefined && banners.length>=1">
 
                 <carousel [cellsToShow]="1" [loop]="true" autoplay="true" autoplayInterval="2500">
                     <ng-template ngFor let-banner [ngForOf]="banners" >
                     <div class="carousel-cell" *ngIf="banner.main">
-                        <img src="{{banner.image}}">
+                        <a href="https://www.tigo.com.sv/" target="_blank" rel="noopener noreferrer">
+                          <img src="{{banner.image}}">  
+                        </a>
+                        
                     </div>
                 </ng-template>
                 </carousel>
@@ -152,7 +123,9 @@
                 <carousel [cellsToShow]="1" [loop]="true" autoplay="true" autoplayInterval="2500" >
                     <ng-template ngFor let-banner [ngForOf]="banners">
                     <div class="carousel-cell" *ngIf="banner.main==false">
-                        <img src="{{banner.image}}">
+                        <a href="https://www.tigo.com.sv/" target="_blank" rel="noopener noreferrer">
+                            <img src="{{banner.image}}">  
+                          </a>
                     </div>
                 </ng-template>
                 </carousel>

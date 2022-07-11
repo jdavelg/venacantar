@@ -17,6 +17,7 @@ import { global } from '../models/global';
 export class StatsComponent implements OnInit {
   @Input() campaignId: any;
   tableStats:any
+  totalVotes:any=0
 stats={
   labels:[],
   datasets:[{data:[], backgroundColor:[]}]
@@ -63,9 +64,12 @@ stats={
     /*  console.log(resp); */
         if (resp.length>=1) {
           this.tableStats=resp
+
+         
           resp.forEach(cantante => {
             let color= Math.floor(Math.random()*16777215).toString(16);
             this.stats.labels.push(cantante.name)
+             this.totalVotes += cantante.votes
             this.stats.datasets[0].data.push(cantante.votes)
             this.stats.datasets[0].backgroundColor.push('#'+color)
           });
