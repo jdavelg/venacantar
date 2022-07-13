@@ -102,7 +102,7 @@ export class CampaignComponent implements OnInit, OnDestroy {
   getCampaigns() {
     this._campaignService.getCampaings().subscribe(
       resp => {
-        console.log('campaigns ', resp);
+      /*   console.log('campaigns ', resp); */
 
         this.campaigns = resp
         this.campaigns.map(campana => {

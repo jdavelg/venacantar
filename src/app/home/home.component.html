@@ -41,9 +41,9 @@
         <ng-container *ngIf=" currentCampaign && currentCampaign.status && currentCampaign.singers; ">
             <div  *ngIf="banners!=undefined && banners.length>=1">
 
-                <carousel [cellsToShow]="1" [loop]="true" autoplay="true" autoplayInterval="2500">
+                <carousel [cellsToShow]="1" loop="true" autoplay="true" autoplayInterval="2800">
                     <ng-template ngFor let-banner [ngForOf]="banners" >
-                    <div class="carousel-cell" *ngIf="banner.main">
+                    <div class="carousel-cell" *ngIf="banner.main==true">
                         <a href="https://www.tigo.com.sv/" target="_blank" rel="noopener noreferrer">
                           <img src="{{banner.image}}">  
                         </a>
